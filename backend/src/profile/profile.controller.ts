@@ -11,17 +11,27 @@ export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
   @Get(':username')
   findOne(@Param('username') username: string) {
-    return this.profileService.findOne(username);
+    return this.profileService.findProfileByUsername(username);
   }
 
   @Get(':username/likes')
-  findOneLikes(@Param('username') username: string) {
-    return this.profileService.findOneLikes(username);
+  getUserLikes(@Param('username') username: string) {
+    return this.profileService.getUserLikes(username);
   }
 
   @Get(':username/posts')
-  findOnePosts(@Param('username') username: string) {
-    return this.profileService.findOnePosts(username);
+  getUserPosts(@Param('username') username: string) {
+    return this.profileService.getUserPosts(username);
+  }
+
+  @Get(':username/following')
+  getUserFollowing(@Param('username') username: string) {
+    return this.profileService.getUserFollowing(username);
+  }
+
+  @Get(':username/followers')
+  getUserFollowers(@Param('username') username: string) {
+    return this.profileService.getUserFollowers(username);
   }
 
   @Patch('')

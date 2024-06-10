@@ -9,6 +9,7 @@ import { LikesModule } from '../likes/likes.module';
 import { PostsModule } from '../posts/posts.module';
 import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.middleware';
+import { FollowModule } from '../follow/follow.module';
 
 @Module({
   imports: [
@@ -17,10 +18,11 @@ import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.mid
     UsersModule,
     LikesModule,
     PostsModule,
+    FollowModule,
   ],
   controllers: [ProfileController],
   providers: [ProfileService],
-  exports: [ProfileService]
+  exports: [ProfileService],
 })
 export class ProfileModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

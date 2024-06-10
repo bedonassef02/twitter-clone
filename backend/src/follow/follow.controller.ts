@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Param, Delete, Get } from '@nestjs/common';
 import { FollowService } from './follow.service';
-import { CreateFollowDto } from './dto/create-follow.dto';
+import { FollowDto } from './dto/follow.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 
 @Controller('follow')
@@ -8,26 +8,22 @@ export class FollowController {
   constructor(private readonly followService: FollowService) {}
 
   @Post()
-  create(
-    @User('id') followerId: string,
-    @Body() createFollowDto: CreateFollowDto,
-  ) {
+  create(@User('id') followerId: string, @Body() createFollowDto: FollowDto) {
     createFollowDto.followerId = followerId;
     return this.followService.create(createFollowDto);
   }
 
   @Get()
-  findAll() {
-    return this.followService.findAll();
+  findAll(@User('id') id: string) {
+    return this.followService.getFollowRequests(id);
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.followService.findOne(+id);
+  @Post(':id')
+  accept(@Param('id') id: string) {
+    return this.followService.update(id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.followService.remove(+id);
+    return this.followService.remove(id);
   }
 }
