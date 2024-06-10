@@ -11,6 +11,7 @@ import { ProfileModule } from './profile/profile.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { NotificationsModule } from './notifications/notifications.module';
 import { FollowModule } from './follow/follow.module';
+import { BlockModule } from './block/block.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ expandVariables: true, isGlobal: true }),
@@ -23,6 +24,7 @@ import { FollowModule } from './follow/follow.module';
     ProfileModule,
     NotificationsModule,
     FollowModule,
+    BlockModule,
   ],
   controllers: [AppController],
   providers: [AppService],
