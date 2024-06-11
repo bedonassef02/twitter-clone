@@ -23,6 +23,8 @@ async function bootstrap() {
     .addServer('https://twitter-clone-c0g3.onrender.com/', 'Production')
     .addBearerAuth()
     .build();
+
+  app.enableCors()
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
