@@ -12,6 +12,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { NotificationsModule } from './notifications/notifications.module';
 import { FollowModule } from './follow/follow.module';
 import { BlockModule } from './block/block.module';
+import { ChatModule } from './chat/chat.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ expandVariables: true, isGlobal: true }),
@@ -25,6 +26,7 @@ import { BlockModule } from './block/block.module';
     NotificationsModule,
     FollowModule,
     BlockModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
