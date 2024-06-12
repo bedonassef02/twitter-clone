@@ -1,10 +1,10 @@
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, now } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
 export type PostDocument = HydratedDocument<Post>;
 
-@Schema({ timestamps: true })
+@Schema()
 export class Post {
   @Prop({ required: true })
   content: string;
@@ -19,6 +19,9 @@ export class Post {
   images: string[];
   @Prop({ default: 'post' })
   type: string;
+
+  @Prop({ default: now() })
+  createdAt: Date;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

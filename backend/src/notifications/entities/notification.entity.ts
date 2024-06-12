@@ -1,10 +1,10 @@
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, now } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 
 export type NotificationDocument = HydratedDocument<Notification>;
 
-@Schema({ timestamps: true })
+@Schema()
 export class Notification {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   user: string;
@@ -16,6 +16,9 @@ export class Notification {
   seen: boolean;
   @Prop()
   from: string;
+
+  @Prop({ default: now() })
+  createdAt: Date;
 }
 
 export const NotificationSchema = SchemaFactory.createForClass(Notification);

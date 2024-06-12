@@ -63,4 +63,13 @@ export class PostsService {
     }
     await this.postModel.findByIdAndDelete(id);
   }
+
+  async search(keyword: string): Promise<PostDocument[]> {
+    const regex = new RegExp(keyword, 'i');
+    return this.postModel
+      .find({
+        $or: [{ content: { $regex: regex } }],
+      })
+      .exec();
+  }
 }

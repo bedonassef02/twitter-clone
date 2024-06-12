@@ -29,4 +29,13 @@ export class UsersService {
   findById(id: string): Promise<UserDocument | null> {
     return this.userModel.findById(id);
   }
+
+  async search(keyword: string): Promise<UserDocument[]> {
+    const regex = new RegExp(keyword, 'i');
+    return this.userModel
+      .find({
+        $or: [{ name: { $regex: regex } }, { username: { $regex: regex } }],
+      })
+      .exec();
+  }
 }
