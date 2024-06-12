@@ -1,0 +1,27 @@
+.container-div {
+  padding-right: 15px;
+  padding-left: 15px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  gap: 16px;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container-div {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container-div {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container-div {
+    width: 1170px;
+  }
+}
