@@ -1,0 +1,95 @@
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.container-fluid {
+  .row {
+    height: 100vh;
+    // width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .image {
+      img {
+      }
+    }
+    .register {
+      h1 {
+        color: #e7e9ea;
+        font-weight: 700;
+        font-size: 64px;
+        letter-spacing: -1.2px;
+        line-height: 84px;
+      }
+      P {
+        color: #e7e9ea;
+        font-weight: 700;
+        font-size: 31px;
+        letter-spacing: normal;
+        line-height: 36px;
+      }
+      .links {
+        a.line {
+        }
+        a {
+          position: relative;
+          display: block;
+          height: 40px;
+          width: 300px;
+          text-align: center;
+          background-color: rgb(255, 255, 255);
+          color: black;
+          border-radius: 30px;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          -ms-border-radius: 30px;
+          -o-border-radius: 30px;
+          transition: 0.3s;
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+          span {
+            @include center();
+            width: 100%;
+          }
+        }
+        a.line {
+          position: relative;
+          background-color: transparent;
+          // color: black;
+          // width: fit-content;
+          span.line {
+            @include center();
+            background-color: transparent;
+            color: white;
+          }
+        }
+        a.line:hover {
+          background-color: black;
+          color: white;
+        }
+        a:hover {
+          background-color: rgb(255, 255, 255, 0.9);
+        }
+        a.dial:hover {
+          opacity: 0.9;
+        }
+        small {
+          font: {
+            size: 11px;
+            weight: 400;
+            line-height: 12px;
+          }
+        }
+      }
+    }
+  }
+}
