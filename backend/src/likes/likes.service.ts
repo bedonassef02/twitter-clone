@@ -47,4 +47,12 @@ export class LikesService {
   private remove(id: string): Promise<LikeDocument | null> {
     return this.likeModel.findByIdAndDelete(id);
   }
+
+  async countUserLikes(user: string): Promise<number> {
+    return this.likeModel.countDocuments({ user }).exec();
+  }
+
+  async countPostLikes(post: string): Promise<number> {
+    return this.likeModel.countDocuments({ post }).exec();
+  }
 }

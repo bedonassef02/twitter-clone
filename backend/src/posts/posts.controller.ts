@@ -52,6 +52,12 @@ export class PostsController {
   }
 
   @UseGuards(PostsGuard)
+  @Get(':id/count')
+  count(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.postsService.findCount(id);
+  }
+
+  @UseGuards(PostsGuard)
   @Delete(':id')
   remove(@User('id') userId: string, @Param('id') id: string) {
     return this.postsService.remove(userId, id);

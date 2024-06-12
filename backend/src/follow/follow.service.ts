@@ -84,4 +84,16 @@ export class FollowService {
     createFollowDto.followingId = profile.user;
     return createFollowDto;
   }
+
+  async countFollowing(userId: string): Promise<number> {
+    return this.followModel
+      .countDocuments({ followerId: userId, accepted: true })
+      .exec();
+  }
+
+  async countFollowers(userId: string): Promise<number> {
+    return this.followModel
+      .countDocuments({ followingId: userId, accepted: true })
+      .exec();
+  }
 }

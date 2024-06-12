@@ -1,19 +1,13 @@
-import {
-  forwardRef,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Profile, ProfileDocument } from './entities/profile.entity';
 import { Model } from 'mongoose';
 import { UsersService } from '../users/users.service';
-import { UserDocument } from '../users/entities/user.entity';
 import { LikesService } from '../likes/likes.service';
 import { PostsService } from '../posts/posts.service';
-import { OnEvent } from '@nestjs/event-emitter';
 import { FollowService } from '../follow/follow.service';
+import { OnEvent } from '@nestjs/event-emitter';
 
 @Injectable()
 export class ProfileService {
@@ -23,12 +17,11 @@ export class ProfileService {
     private readonly usersService: UsersService,
     private readonly likesService: LikesService,
     private readonly postsService: PostsService,
-    @Inject(forwardRef(() => FollowService))
     private readonly followService: FollowService,
   ) {}
 
   async findProfileByUsername(username: string): Promise<Profile> {
-    const user: UserDocument = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne(username);
     if (!user) {
       throw new NotFoundException(`username ${username} not found`);
     }
@@ -41,22 +34,22 @@ export class ProfileService {
   }
 
   async getUserLikes(username: string) {
-    const user: UserDocument = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne(username);
     return this.likesService.findUserLikes(user.id);
   }
 
   async getUserPosts(username: string) {
-    const user: UserDocument = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne(username);
     return this.postsService.findUserPosts(user.id);
   }
 
   async getUserFollowing(username: string) {
-    const profile: Profile = await this.findProfileByUsername(username);
+    const profile = await this.findProfileByUsername(username);
     return this.followService.getFollowing(profile.user);
   }
 
   async getUserFollowers(username: string) {
-    const profile: Profile = await this.findProfileByUsername(username);
+    const profile = await this.findProfileByUsername(username);
     return this.followService.getFollowers(profile.user);
   }
 
@@ -68,5 +61,25 @@ export class ProfileService {
 
   async findOne(user: string) {
     return this.profileModel.findOne({ user });
+  }
+
+  async count(username: string) {
+    const user = await this.usersService.findOne(username);
+    const userId = user.id;
+    const [likesCount, postsCount, followersCount, followingCount, mediaCount] =
+      await Promise.all([
+        this.likesService.countUserLikes(userId),
+        this.postsService.countUserPosts(userId),
+        this.followService.countFollowers(userId),
+        this.followService.countFollowing(userId),
+        this.postsService.countUserMedia(userId),
+      ]);
+    return {
+      likes: likesCount,
+      posts: postsCount,
+      followers: followersCount,
+      following: followingCount,
+      media: mediaCount,
+    };
   }
 }

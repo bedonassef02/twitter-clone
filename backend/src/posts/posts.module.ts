@@ -18,6 +18,7 @@ import { extname } from 'path';
 import { ProfileModule } from '../profile/profile.module';
 import { FollowModule } from '../follow/follow.module';
 import { GuardService } from './services/guard.service';
+import { LikesModule } from '../likes/likes.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { GuardService } from './services/guard.service';
     }),
     AuthModule,
     UsersModule,
+    LikesModule,
     forwardRef(() => ProfileModule),
     FollowModule,
   ],

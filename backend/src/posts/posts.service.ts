@@ -10,11 +10,13 @@ import { Post, PostDocument } from './entities/post.entity';
 import { Model } from 'mongoose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CreateNotificationDto } from '../notifications/dto/create-notification.dto';
+import { LikesService } from '../likes/likes.service';
 
 @Injectable()
 export class PostsService {
   constructor(
     @InjectModel(Post.name) private readonly postModel: Model<PostDocument>,
+    private readonly likesService: LikesService,
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
@@ -35,6 +37,9 @@ export class PostsService {
       };
       this.eventEmitter.emit('notification.create', createNotificationDto);
     }
+    if (createPostDto.repost && createPostDto.type !== 'comment') {
+      createPostDto.type = 'repost';
+    }
     return this.postModel.create(createPostDto);
   }
 
@@ -54,6 +59,16 @@ export class PostsService {
     return post;
   }
 
+  async findCount(id: string): Promise<any> {
+    const likes = await this.likesService.countPostLikes(id);
+    const comments = await this.countPostComments(id);
+    const reposts = await this.countReposts(id);
+    return {
+      comments,
+      reposts,
+      likes,
+    };
+  }
   async remove(userId: string, id: string): Promise<void> {
     const post: Post = await this.findOne(id);
     if (post.user.toString() !== userId) {
@@ -70,6 +85,27 @@ export class PostsService {
       .find({
         $or: [{ content: { $regex: regex } }],
       })
+      .exec();
+  }
+
+  async countUserPosts(userId: string): Promise<number> {
+    return this.postModel.countDocuments({ user: userId }).exec();
+  }
+
+  async countUserMedia(userId: string): Promise<number> {
+    return this.postModel
+      .countDocuments({ user: userId, images: { $ne: null } })
+      .exec();
+  }
+  private async countPostComments(postId: string): Promise<number> {
+    return this.postModel
+      .countDocuments({ repost: postId, type: 'comment' })
+      .exec();
+  }
+
+  private async countReposts(postId: string): Promise<number> {
+    return this.postModel
+      .countDocuments({ repost: postId, type: 'repost' })
       .exec();
   }
 }
