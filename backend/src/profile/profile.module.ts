@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  forwardRef,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+} from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { ProfileController } from './profile.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -17,7 +22,7 @@ import { FollowModule } from '../follow/follow.module';
     AuthModule,
     UsersModule,
     LikesModule,
-    PostsModule,
+    forwardRef(() => PostsModule),
     FollowModule,
   ],
   controllers: [ProfileController],

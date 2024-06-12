@@ -57,7 +57,7 @@ export class FollowService {
     }
   }
 
-  private async isFollowed(createFollowDto: FollowDto): Promise<boolean> {
+  async isFollowed(createFollowDto: FollowDto): Promise<boolean> {
     const follow = await this.followModel
       .findOne({
         followingId: createFollowDto.followingId,

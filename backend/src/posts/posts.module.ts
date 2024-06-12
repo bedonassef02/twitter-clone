@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  forwardRef,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { PostsController } from './posts.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -10,6 +15,9 @@ import { UsersModule } from '../users/users.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { ProfileModule } from '../profile/profile.module';
+import { FollowModule } from '../follow/follow.module';
+import { GuardService } from './services/guard.service';
 
 @Module({
   imports: [
@@ -29,10 +37,12 @@ import { extname } from 'path';
     }),
     AuthModule,
     UsersModule,
+    forwardRef(() => ProfileModule),
+    FollowModule,
   ],
   controllers: [PostsController],
-  providers: [PostsService],
-  exports: [PostsService],
+  providers: [PostsService, GuardService],
+  exports: [PostsService, GuardService],
 })
 export class PostsModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

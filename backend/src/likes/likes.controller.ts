@@ -1,9 +1,18 @@
-import { Controller, Get, Body, Patch, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { LikesService } from './likes.service';
 import { LikeDto } from './dto/like.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { LikePostsGuard } from '../posts/guards/like-posts.guard';
 
 @ApiTags('Likes')
 @ApiBearerAuth()
@@ -11,6 +20,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 export class LikesController {
   constructor(private readonly likesService: LikesService) {}
 
+  @UseGuards(LikePostsGuard)
   @Patch()
   toggle(@User('id') user: string, @Body() likeDto: LikeDto) {
     likeDto.user = user;

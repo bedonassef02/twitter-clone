@@ -7,6 +7,7 @@ import {
   Delete,
   UseInterceptors,
   UploadedFiles,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -14,6 +15,7 @@ import { User } from '../users/utils/decorators/user.decorator';
 import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PostsGuard } from './guards/posts.guard';
 
 @ApiTags('Posts')
 @ApiBearerAuth()
@@ -43,11 +45,13 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
+  @UseGuards(PostsGuard)
   @Get(':id')
   findOne(@Param('id', ParseMongoIdPipe) id: string) {
     return this.postsService.findOne(id);
   }
 
+  @UseGuards(PostsGuard)
   @Delete(':id')
   remove(@User('id') userId: string, @Param('id') id: string) {
     return this.postsService.remove(userId, id);

@@ -1,4 +1,9 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Profile, ProfileDocument } from './entities/profile.entity';
@@ -24,6 +29,9 @@ export class ProfileService {
 
   async findProfileByUsername(username: string): Promise<Profile> {
     const user: UserDocument = await this.usersService.findOne(username);
+    if (!user) {
+      throw new NotFoundException(`username ${username} not found`);
+    }
     return this.profileModel.findOne({ user: user.id }).exec();
   }
 
@@ -56,5 +64,9 @@ export class ProfileService {
     return this.profileModel
       .findOneAndUpdate({ user: userId }, updateProfileDto, { new: true })
       .exec();
+  }
+
+  async findOne(user: string) {
+    return this.profileModel.findOne({ user });
   }
 }

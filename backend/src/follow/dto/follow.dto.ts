@@ -3,8 +3,8 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class FollowDto {
   @IsNotEmpty()
   @IsString()
-  username: string;
+  username?: string;
   followerId: string;
   followingId: string;
-  accepted: boolean;
+  accepted?: boolean;
 }
