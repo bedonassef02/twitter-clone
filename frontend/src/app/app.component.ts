@@ -11,10 +11,10 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'twitter-clone';
-  visible: boolean = false;
+ 
+  authS: AuthService = inject(AuthService);
 
-  showDialog() {
-    this.visible = true;
+  ngOnInit(): void {
+    this.authS.autoLogin();
   }
 }
