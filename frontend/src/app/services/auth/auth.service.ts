@@ -60,6 +60,20 @@ export class AuthService {
       );
   }
 
+autoLogin() {
+    const loadedUser: User = JSON.parse(localStorage.getItem('user'));
+    if (!loadedUser) {
+      return;
+    }
+    const newUser: User = {
+      access_token: loadedUser.access_token,
+      id: loadedUser.id,
+      name: loadedUser.name,
+      username: loadedUser.username,
+    };
+    this.userSub.next(newUser);
+  }
+  
   private storingUser(
     name: string,
     username: string,
