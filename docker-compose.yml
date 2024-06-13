@@ -13,6 +13,18 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/nestjs
 
+  angular-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+
   mongo:
     container_name: twitter-mongo
     image: mongo
