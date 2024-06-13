@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { BlockService } from './block.service';
 import { BlockDto } from './dto/block.dto';
 import { User } from '../users/utils/decorators/user.decorator';
-import { ApiTags } from '@nestjs/swagger';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 
 @ApiTags('Block')
+@ApiBearerAuth()
 @Controller('block')
 export class BlockController {
   constructor(private readonly blockService: BlockService) {}

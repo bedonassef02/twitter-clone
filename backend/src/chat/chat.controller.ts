@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { ChatDto } from './dto/chat.dto';
 import { User } from '../users/utils/decorators/user.decorator';
-import { ApiTags } from '@nestjs/swagger';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 
 @ApiTags('Chat')
+@ApiBearerAuth()
 @Controller('chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}

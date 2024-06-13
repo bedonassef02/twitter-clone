@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { BookmarksService } from './bookmarks.service';
 import { BookmarkDto } from './dto/bookmark.dto';
 import { User } from '../users/utils/decorators/user.decorator';
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiTags('Bookmarks')
+@ApiBearerAuth()
 @Controller('bookmarks')
 export class BookmarksController {
   constructor(private readonly bookmarksService: BookmarksService) {}

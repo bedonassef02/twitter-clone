@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="enhance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/block/block.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/block/dto/block.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/dto/block.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/bookmarks/dto/bookmark.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/bookmarks/dto/bookmark.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/chat/dto/chat.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/dto/chat.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/follow/dto/follow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/dto/follow.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/notifications/dto/create-notification.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/dto/create-notification.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/search/search.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/search/search.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +90,7 @@
       <workItem from="1718213577809" duration="2882000" />
       <workItem from="1718216478811" duration="1246000" />
       <workItem from="1718217808776" duration="191000" />
-      <workItem from="1718265698515" duration="539000" />
+      <workItem from="1718265698515" duration="2027000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -155,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718265802915</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="enhance">
+      <option name="closed" value="true" />
+      <created>1718266401906</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718266401906</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
