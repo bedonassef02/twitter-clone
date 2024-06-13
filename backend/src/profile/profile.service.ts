@@ -11,6 +11,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Follow } from '../follow/entities/follow.entity';
 import { UserDocument } from '../users/entities/user.entity';
 import { PostDocument } from '../posts/entities/post.entity';
+import { LikeDocument } from '../likes/entities/like.entity';
 
 @Injectable()
 export class ProfileService {
@@ -31,12 +32,16 @@ export class ProfileService {
     return this.profileModel.findOne({ user: user.id }).exec();
   }
 
+  async findByUserId(user: string): Promise<Profile> {
+    return this.profileModel.findOne({ user }).exec();
+  }
+
   @OnEvent('profile.create')
   async handleProfileCreateEvent({ user }): Promise<Profile> {
     return this.profileModel.create({ user });
   }
 
-  async findLikes(username: string) {
+  async findLikes(username: string): Promise<LikeDocument[]> {
     const user: UserDocument = await this.usersService.findOne(username);
     return this.likesService.findUserLikes(user.id);
   }

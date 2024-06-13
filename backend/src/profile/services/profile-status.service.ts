@@ -5,6 +5,7 @@ import { UsersService } from '../../users/users.service';
 import { LikesService } from '../../likes/likes.service';
 import { PostsStatusService } from '../../posts/utils/services/posts-status.service';
 import { FollowService } from '../../follow/follow.service';
+import { ProfileCountResponse } from '../dto/responses/profile-count.response';
 
 @Injectable()
 export class ProfileStatusService {
@@ -16,23 +17,22 @@ export class ProfileStatusService {
     private readonly followService: FollowService,
   ) {}
 
-  async count(username: string) {
+  async count(username: string): Promise<ProfileCountResponse> {
     const user = await this.usersService.findOne(username);
     const userId = user.id;
-    const [likesCount, postsCount, followersCount, followingCount, mediaCount] =
-      await Promise.all([
-        this.likesService.countUserLikes(userId),
-        this.postsStatusService.countUserPosts(userId),
-        this.followService.countFollowers(userId),
-        this.followService.countFollowing(userId),
-        this.postsStatusService.countUserMedia(userId),
-      ]);
+    const [likes, posts, followers, following, media] = await Promise.all([
+      this.likesService.countUserLikes(userId),
+      this.postsStatusService.countUserPosts(userId),
+      this.followService.countFollowers(userId),
+      this.followService.countFollowing(userId),
+      this.postsStatusService.countUserMedia(userId),
+    ]);
     return {
-      likes: likesCount,
-      posts: postsCount,
-      followers: followersCount,
-      following: followingCount,
-      media: mediaCount,
+      likes,
+      posts,
+      followers,
+      following,
+      media,
     };
   }
 }

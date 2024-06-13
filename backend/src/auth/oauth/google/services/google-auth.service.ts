@@ -3,7 +3,7 @@ import axios from 'axios';
 import { UsersService } from '../../../../users/users.service';
 import { AuthService } from '../../../auth.service';
 import { UserDocument } from '../../../../users/entities/user.entity';
-import { AuthResponse } from '../../../utils/interfaces/auth-response.interface';
+import { AuthResponse } from '../../../dto/responses/auth.response';
 
 @Injectable()
 export class GoogleAuthService {

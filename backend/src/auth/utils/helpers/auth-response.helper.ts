@@ -1,5 +1,5 @@
 import { Payload } from '../interfaces/payload.interface';
-import { AuthResponse } from '../interfaces/auth-response.interface';
+import { AuthResponse } from '../../dto/responses/auth.response';
 
 export function authResponse(payload: Payload, token: string): AuthResponse {
   return {

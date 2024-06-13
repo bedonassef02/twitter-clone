@@ -8,7 +8,7 @@ import { createPayload } from './utils/helpers/create-payload.helper';
 import { Payload } from './utils/interfaces/payload.interface';
 import { TokenService } from './services/token.service';
 import { authResponse } from './utils/helpers/auth-response.helper';
-import { AuthResponse } from './utils/interfaces/auth-response.interface';
+import { AuthResponse } from './dto/responses/auth.response';
 
 @Injectable()
 export class AuthService {

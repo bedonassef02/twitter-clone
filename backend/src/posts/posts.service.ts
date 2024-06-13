@@ -16,6 +16,7 @@ import {
   createPostNotification,
 } from './utils/helpers/create-post.helper';
 import { PostsStatusService } from './utils/services/posts-status.service';
+import { PostCountResponse } from './dto/responses/post-count.response';
 
 @Injectable()
 export class PostsService {
@@ -26,7 +27,7 @@ export class PostsService {
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
-  create(createPostDto: CreatePostDto) {
+  create(createPostDto: CreatePostDto): Promise<PostDocument> {
     checkIfPostEmpty(createPostDto);
     checkPostType(createPostDto);
     if (createPostDto.type === 'comment' || createPostDto.repost) {
@@ -54,7 +55,7 @@ export class PostsService {
     return post;
   }
 
-  async findCount(id: string): Promise<any> {
+  async findCount(id: string): Promise<PostCountResponse> {
     const [likes, comments, reposts] = await Promise.all([
       this.likesService.countPostLikes(id),
       this.postsStatusService.countPostComments(id),

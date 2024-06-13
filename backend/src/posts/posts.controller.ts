@@ -14,8 +14,19 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { PostsGuard } from './guards/posts.guard';
+import { FollowResponse } from '../follow/dto/responses/follow.response';
+import { PostResponse } from './dto/responses/post.response';
+import { PostCountResponse } from './dto/responses/post-count.response';
+import { PostDocument } from './entities/post.entity';
 
 @ApiTags('Posts')
 @ApiBearerAuth()
@@ -25,11 +36,14 @@ export class PostsController {
 
   @Post()
   @UseInterceptors(FileFieldsInterceptor([{ name: 'images', maxCount: 4 }]))
+  @ApiCreatedResponse({
+    type: PostResponse,
+  })
   create(
     @UploadedFiles() files: { images?: Express.Multer.File[] },
     @User('id') userId: string,
     @Body() createPostDto: CreatePostDto,
-  ) {
+  ): Promise<PostDocument> {
     if (files.images) {
       createPostDto.images = files.images.map((file) => {
         return file.filename;
@@ -41,25 +55,36 @@ export class PostsController {
   }
 
   @Get()
+  @ApiOkResponse({
+    type: PostResponse,
+    isArray: true,
+  })
   findAll() {
     return this.postsService.findAll();
   }
 
   @UseGuards(PostsGuard)
   @Get(':id')
-  findOne(@Param('id', ParseMongoIdPipe) id: string) {
+  @ApiOkResponse({
+    type: PostResponse,
+  })
+  findOne(@Param('id', ParseMongoIdPipe) id: string): Promise<PostDocument> {
     return this.postsService.findOne(id);
   }
 
   @UseGuards(PostsGuard)
   @Get(':id/count')
-  count(@Param('id', ParseMongoIdPipe) id: string) {
+  @ApiOkResponse({
+    type: PostCountResponse,
+  })
+  count(@Param('id', ParseMongoIdPipe) id: string): Promise<PostCountResponse> {
     return this.postsService.findCount(id);
   }
 
   @UseGuards(PostsGuard)
   @Delete(':id')
-  remove(@User('id') userId: string, @Param('id') id: string) {
+  @ApiNoContentResponse()
+  remove(@User('id') userId: string, @Param('id') id: string): Promise<void> {
     return this.postsService.remove(userId, id);
   }
 }
