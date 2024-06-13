@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GuardService } from '../../posts/services/guard.service';
+import {Profile} from "../entities/profile.entity";
 
 @Injectable()
 export class ProfileGuard implements CanActivate {
@@ -15,7 +16,7 @@ export class ProfileGuard implements CanActivate {
     }
 
     try {
-      const userProfile = await this.guardService.getProfile(username);
+      const userProfile:Profile = await this.guardService.getProfile(username);
 
       if (
         userProfile &&

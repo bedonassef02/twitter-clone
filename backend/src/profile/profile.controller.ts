@@ -5,6 +5,7 @@ import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ProfileGuard } from './guards/profile.guard';
 import { ProfileStatusService } from './services/profile-status.service';
+import {BlockGuard} from "../block/block.guard";
 
 @ApiTags('Profile')
 @ApiBearerAuth()
@@ -14,7 +15,7 @@ export class ProfileController {
     private readonly profileService: ProfileService,
     private readonly profileStatusService: ProfileStatusService,
   ) {}
-  @UseGuards(ProfileGuard)
+  @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username')
   findOne(@Param('username') username: string) {
     return this.profileService.findByUsername(username);
@@ -24,25 +25,25 @@ export class ProfileController {
   findCount(@Param('username') username: string) {
     return this.profileStatusService.count(username);
   }
-  @UseGuards(ProfileGuard)
+  @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username/likes')
   findLikes(@Param('username') username: string) {
     return this.profileService.findLikes(username);
   }
 
-  @UseGuards(ProfileGuard)
+  @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username/posts')
   findPosts(@Param('username') username: string) {
     return this.profileService.findPosts(username);
   }
 
-  @UseGuards(ProfileGuard)
+  @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username/following')
   findFollowing(@Param('username') username: string) {
     return this.profileService.findFollowing(username);
   }
 
-  @UseGuards(ProfileGuard)
+  @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username/followers')
   findFollowers(@Param('username') username: string) {
     return this.profileService.findFollowers(username);

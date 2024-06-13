@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { UsersService } from '../../../../users/users.service';
+import {AuthService} from "../../../auth.service";
+import {UserDocument} from "../../../../users/entities/user.entity";
+import {AuthResponse} from "../../../utils/interfaces/auth-response.interface";
 
 @Injectable()
 export class GoogleAuthService {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+      private readonly usersService: UsersService,
+      private readonly authService: AuthService,) {}
   async getNewAccessToken(refreshToken: string): Promise<string> {
     try {
       const response = await axios.post(
@@ -33,16 +38,17 @@ export class GoogleAuthService {
     }
   }
 
-  async loginOrRegister(googleToken: string) {
+  async loginOrRegister(googleToken: string):Promise<AuthResponse> {
     const user = (await this.getProfile(googleToken)).data;
-    const isUserExist = await this.usersService.findByGoogleId(user.id);
+    let isUserExist = await this.usersService.findByGoogleId(user.id);
     if (!isUserExist) {
-      await this.usersService.create({
+      isUserExist = await this.usersService.create({
         googleId: user.id,
         name: user.name,
         username: user.email.split('@')[0],
       });
     }
+    return this.authService.createResponse(isUserExist);
   }
 
   async isTokenExpired(token: string): Promise<boolean> {
@@ -70,4 +76,6 @@ export class GoogleAuthService {
       console.error('Failed to revoke the token:', error);
     }
   }
+
+
 }

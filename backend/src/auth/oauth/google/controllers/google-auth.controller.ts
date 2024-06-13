@@ -12,11 +12,17 @@ import { Response } from 'express';
 import { GoogleAuthService } from '../services/google-auth.service';
 import { CheckTokenExpiryGuard } from '../guards/check-token-expiry.guard';
 import { ApiTags } from '@nestjs/swagger';
+import {UsersService} from "../../../../users/users.service";
+import {AuthService} from "../../../auth.service";
 
 @ApiTags('Google Auth')
 @Controller('auth')
 export class GoogleAuthController {
-  constructor(private readonly authService: GoogleAuthService) {}
+  constructor(
+      private readonly googleAuthService: GoogleAuthService,
+      private readonly usersService: UsersService,
+      private readonly authService: AuthService,
+              ) {}
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -33,17 +39,20 @@ export class GoogleAuthController {
       httpOnly: true,
     });
 
-    await this.authService.loginOrRegister(googleToken);
+    await this.googleAuthService.loginOrRegister(googleToken);
 
-    res.redirect('http://localhost:3000/auth/profile');
+    res.redirect('https://twitter-api-ld6h.onrender.com/auth/profile');
   }
 
   @UseGuards(CheckTokenExpiryGuard)
   @Get('profile')
   async getProfile(@Request() req) {
     const accessToken = req.cookies['access_token'];
-    if (accessToken)
-      return (await this.authService.getProfile(accessToken)).data;
+    if (accessToken) {
+      const userData =  (await this.googleAuthService.getProfile(accessToken)).data;
+      const user = await this.usersService.findByGoogleId(userData.id);
+      return this.authService.createResponse(user);
+    }
     throw new UnauthorizedException('No access token');
   }
 
@@ -52,7 +61,7 @@ export class GoogleAuthController {
     const refreshToken = req.cookies['refresh_token'];
     res.clearCookie('access_token');
     res.clearCookie('refresh_token');
-    this.authService.revokeGoogleToken(refreshToken);
+    this.googleAuthService.revokeGoogleToken(refreshToken);
     res.redirect('http://localhost:3000/');
   }
 }

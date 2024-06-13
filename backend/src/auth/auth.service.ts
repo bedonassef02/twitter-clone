@@ -39,7 +39,7 @@ export class AuthService {
     return this.createResponse(user);
   }
 
-  private async createResponse(user: UserDocument): Promise<AuthResponse> {
+  async createResponse(user: UserDocument): Promise<AuthResponse> {
     const payload: Payload = createPayload(user);
     const token = await this.tokenService.generate(payload);
     return authResponse(payload, token);

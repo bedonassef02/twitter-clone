@@ -16,6 +16,7 @@ import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.middleware';
 import { FollowModule } from '../follow/follow.module';
 import { ProfileStatusService } from './services/profile-status.service';
+import {BlockModule} from "../block/block.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ProfileStatusService } from './services/profile-status.service';
     LikesModule,
     forwardRef(() => PostsModule),
     FollowModule,
+    BlockModule
   ],
   controllers: [ProfileController],
   providers: [ProfileService, ProfileStatusService],
