@@ -5,7 +5,7 @@ import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ProfileGuard } from './guards/profile.guard';
 import { ProfileStatusService } from './services/profile-status.service';
-import {BlockGuard} from "../block/block.guard";
+import { BlockGuard } from '../block/block.guard';
 
 @ApiTags('Profile')
 @ApiBearerAuth()

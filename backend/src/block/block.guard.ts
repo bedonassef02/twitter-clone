@@ -1,14 +1,18 @@
-import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { BlockService } from './block.service';
 import { ProfileService } from '../profile/profile.service';
 import { Profile } from '../profile/entities/profile.entity';
 
 @Injectable()
 export class BlockGuard implements CanActivate {
-
   constructor(
-      private readonly blockService: BlockService,
-      private readonly profileService: ProfileService,
+    private readonly blockService: BlockService,
+    private readonly profileService: ProfileService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -16,15 +20,17 @@ export class BlockGuard implements CanActivate {
     const { user, params } = request;
     const username = params.username;
 
-
     // Allow access if the user is trying to access their own profile
     if (username === user.username) {
       return true;
     }
 
     // Fetch profiles for the given usernames
-    const userProfile: Profile = await this.profileService.findByUsername(user.username);
-    const blockedUserProfile: Profile = await this.profileService.findByUsername(username);
+    const userProfile: Profile = await this.profileService.findByUsername(
+      user.username,
+    );
+    const blockedUserProfile: Profile =
+      await this.profileService.findByUsername(username);
 
     // Check if the user is blocked by the other user
     const isBlockedByOtherUser = await this.blockService.findOne({

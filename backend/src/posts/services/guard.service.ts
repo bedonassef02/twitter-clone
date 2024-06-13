@@ -1,8 +1,8 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PostsService } from '../posts.service';
 import { ProfileService } from '../../profile/profile.service';
 import { FollowService } from '../../follow/follow.service';
-import {Profile} from "../../profile/entities/profile.entity";
+import { Profile } from '../../profile/entities/profile.entity';
 
 @Injectable()
 export class GuardService {
@@ -45,7 +45,7 @@ export class GuardService {
   private isPostOwner(postUser: string, user: string): boolean {
     return postUser.toString() === user;
   }
-  getProfile(username: string):Promise<Profile> {
+  getProfile(username: string): Promise<Profile> {
     return this.profileService.findByUsername(username);
   }
 

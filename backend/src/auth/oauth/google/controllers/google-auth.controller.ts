@@ -12,17 +12,17 @@ import { Response } from 'express';
 import { GoogleAuthService } from '../services/google-auth.service';
 import { CheckTokenExpiryGuard } from '../guards/check-token-expiry.guard';
 import { ApiTags } from '@nestjs/swagger';
-import {UsersService} from "../../../../users/users.service";
-import {AuthService} from "../../../auth.service";
+import { UsersService } from '../../../../users/users.service';
+import { AuthService } from '../../../auth.service';
 
 @ApiTags('Google Auth')
 @Controller('auth')
 export class GoogleAuthController {
   constructor(
-      private readonly googleAuthService: GoogleAuthService,
-      private readonly usersService: UsersService,
-      private readonly authService: AuthService,
-              ) {}
+    private readonly googleAuthService: GoogleAuthService,
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -49,7 +49,8 @@ export class GoogleAuthController {
   async getProfile(@Request() req) {
     const accessToken = req.cookies['access_token'];
     if (accessToken) {
-      const userData =  (await this.googleAuthService.getProfile(accessToken)).data;
+      const userData = (await this.googleAuthService.getProfile(accessToken))
+        .data;
       const user = await this.usersService.findByGoogleId(userData.id);
       return this.authService.createResponse(user);
     }

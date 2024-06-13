@@ -14,6 +14,7 @@ async function bootstrap(): Promise<void> {
     .setVersion('1.0')
     .addServer('http://localhost:3000/', 'Local environment')
     .addServer('https://twitter-api-ld6h.onrender.com/', 'Production')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

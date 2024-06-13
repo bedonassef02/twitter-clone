@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="enhance types &amp; format code">
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="google auth">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/oauth/google/controllers/google-auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/oauth/google/controllers/google-auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/block/block.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/guards/profile.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/guards/profile.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +81,8 @@
       <workItem from="1718213577809" duration="2882000" />
       <workItem from="1718216478811" duration="1246000" />
       <workItem from="1718217808776" duration="191000" />
-      <workItem from="1718265698515" duration="9479000" />
+      <workItem from="1718265698515" duration="9571000" />
+      <workItem from="1718276172865" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -186,7 +180,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718270416709</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="google auth">
+      <option name="closed" value="true" />
+      <created>1718275539545</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718275539545</updated>
+    </task>
+    <task id="LOCAL-00014" summary="google auth">
+      <option name="closed" value="true" />
+      <created>1718275551366</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718275551366</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +213,7 @@
     <MESSAGE value="enhance" />
     <MESSAGE value="swagger" />
     <MESSAGE value="enhance types &amp; format code" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance types &amp; format code" />
+    <MESSAGE value="google auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="google auth" />
   </component>
 </project>
