@@ -62,6 +62,6 @@ export class GoogleAuthController {
     res.clearCookie('access_token');
     res.clearCookie('refresh_token');
     this.googleAuthService.revokeGoogleToken(refreshToken);
-    res.redirect('http://localhost:3000/');
+    res.redirect('https://twitter-api-ld6h.onrender.com/');
   }
 }
