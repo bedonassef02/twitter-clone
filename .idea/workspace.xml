@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="counts">
-      <change afterPath="$PROJECT_DIR$/backend/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="enhance">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +81,7 @@
       <workItem from="1718213577809" duration="2882000" />
       <workItem from="1718216478811" duration="1246000" />
       <workItem from="1718217808776" duration="191000" />
-      <workItem from="1718265698515" duration="89000" />
+      <workItem from="1718265698515" duration="539000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -153,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718216188229</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="enhance">
+      <option name="closed" value="true" />
+      <created>1718265802915</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718265802915</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,9 +167,9 @@
     <MESSAGE value="block" />
     <MESSAGE value="CORS" />
     <MESSAGE value="chat" />
-    <MESSAGE value="enhance" />
     <MESSAGE value="search and bookmark" />
     <MESSAGE value="counts" />
-    <option name="LAST_COMMIT_MESSAGE" value="counts" />
+    <MESSAGE value="enhance" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance" />
   </component>
 </project>
