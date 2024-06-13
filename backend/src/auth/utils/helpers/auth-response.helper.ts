@@ -3,7 +3,9 @@ import { AuthResponse } from '../interfaces/auth-response.interface';
 
 export function authResponse(payload: Payload, token: string): AuthResponse {
   return {
-    user: payload,
+    id: payload.id,
+    name: payload.name,
+    username: payload.username,
     access_token: token,
   };
 }

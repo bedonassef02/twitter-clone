@@ -1,6 +1,6 @@
-import { Payload } from './payload.interface';
-
 export interface AuthResponse {
-  user: Payload;
+  id: string;
+  name: string;
+  username: string;
   access_token: string;
 }
