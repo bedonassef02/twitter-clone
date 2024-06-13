@@ -15,6 +15,7 @@ import { PostsModule } from '../posts/posts.module';
 import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.middleware';
 import { FollowModule } from '../follow/follow.module';
+import { ProfileStatusService } from './services/profile-status.service';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { FollowModule } from '../follow/follow.module';
     FollowModule,
   ],
   controllers: [ProfileController],
-  providers: [ProfileService],
+  providers: [ProfileService, ProfileStatusService],
   exports: [ProfileService],
 })
 export class ProfileModule implements NestModule {

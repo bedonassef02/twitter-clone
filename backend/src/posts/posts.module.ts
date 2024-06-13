@@ -19,6 +19,7 @@ import { ProfileModule } from '../profile/profile.module';
 import { FollowModule } from '../follow/follow.module';
 import { GuardService } from './services/guard.service';
 import { LikesModule } from '../likes/likes.module';
+import { PostsStatusService } from './utils/services/posts-status.service';
 
 @Module({
   imports: [
@@ -43,8 +44,8 @@ import { LikesModule } from '../likes/likes.module';
     FollowModule,
   ],
   controllers: [PostsController],
-  providers: [PostsService, GuardService],
-  exports: [PostsService, GuardService],
+  providers: [PostsService, PostsStatusService, GuardService],
+  exports: [PostsService, PostsStatusService, GuardService],
 })
 export class PostsModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

@@ -8,6 +8,9 @@ import { LikesService } from '../likes/likes.service';
 import { PostsService } from '../posts/posts.service';
 import { FollowService } from '../follow/follow.service';
 import { OnEvent } from '@nestjs/event-emitter';
+import { Follow } from '../follow/entities/follow.entity';
+import { UserDocument } from '../users/entities/user.entity';
+import { PostDocument } from '../posts/entities/post.entity';
 
 @Injectable()
 export class ProfileService {
@@ -20,8 +23,8 @@ export class ProfileService {
     private readonly followService: FollowService,
   ) {}
 
-  async findProfileByUsername(username: string): Promise<Profile> {
-    const user = await this.usersService.findOne(username);
+  async findByUsername(username: string): Promise<Profile> {
+    const user: UserDocument = await this.usersService.findOne(username);
     if (!user) {
       throw new NotFoundException(`username ${username} not found`);
     }
@@ -29,57 +32,40 @@ export class ProfileService {
   }
 
   @OnEvent('profile.create')
-  async handleProfileCreateEvent({ user }) {
+  async handleProfileCreateEvent({ user }): Promise<Profile> {
     return this.profileModel.create({ user });
   }
 
-  async getUserLikes(username: string) {
-    const user = await this.usersService.findOne(username);
+  async findLikes(username: string) {
+    const user: UserDocument = await this.usersService.findOne(username);
     return this.likesService.findUserLikes(user.id);
   }
 
-  async getUserPosts(username: string) {
-    const user = await this.usersService.findOne(username);
+  async findPosts(username: string): Promise<PostDocument[]> {
+    const user: UserDocument = await this.usersService.findOne(username);
     return this.postsService.findUserPosts(user.id);
   }
 
-  async getUserFollowing(username: string) {
-    const profile = await this.findProfileByUsername(username);
-    return this.followService.getFollowing(profile.user);
+  async findFollowing(username: string): Promise<Follow[]> {
+    const profile: Profile = await this.findByUsername(username);
+    return this.followService.findFollowing(profile.user);
   }
 
-  async getUserFollowers(username: string) {
-    const profile = await this.findProfileByUsername(username);
-    return this.followService.getFollowers(profile.user);
+  async findFollowers(username: string): Promise<Follow[]> {
+    const profile: Profile = await this.findByUsername(username);
+    return this.followService.findFollowers(profile.user);
   }
 
-  async update(userId: string, updateProfileDto: UpdateProfileDto) {
+  async update(
+    userId: string,
+    updateProfileDto: UpdateProfileDto,
+  ): Promise<Profile> {
     return this.profileModel
       .findOneAndUpdate({ user: userId }, updateProfileDto, { new: true })
       .exec();
   }
 
-  async findOne(user: string) {
+  async findOne(user: string): Promise<Profile> {
     return this.profileModel.findOne({ user });
-  }
-
-  async count(username: string) {
-    const user = await this.usersService.findOne(username);
-    const userId = user.id;
-    const [likesCount, postsCount, followersCount, followingCount, mediaCount] =
-      await Promise.all([
-        this.likesService.countUserLikes(userId),
-        this.postsService.countUserPosts(userId),
-        this.followService.countFollowers(userId),
-        this.followService.countFollowing(userId),
-        this.postsService.countUserMedia(userId),
-      ]);
-    return {
-      likes: likesCount,
-      posts: postsCount,
-      followers: followersCount,
-      following: followingCount,
-      media: mediaCount,
-    };
   }
 }

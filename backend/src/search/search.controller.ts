@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { SearchService } from './search.service';
-import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Search')
 @ApiBearerAuth()

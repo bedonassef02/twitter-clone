@@ -13,7 +13,7 @@ export class LikesService {
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
-  async toggle(likeDto: LikeDto) {
+  async toggle(likeDto: LikeDto): Promise<LikeDocument | null> {
     const isLikeExist = await this.findOne(likeDto);
     if (!isLikeExist) {
       const createNotificationDto: CreateNotificationDto = {
@@ -28,11 +28,11 @@ export class LikesService {
     await this.remove(isLikeExist.id);
   }
 
-  findAll(post: string) {
+  findAll(post: string): Promise<LikeDocument[]> {
     return this.likeModel.find({ post }).limit(100);
   }
 
-  findUserLikes(user: string) {
+  findUserLikes(user: string): Promise<LikeDocument[]> {
     return this.likeModel.find({ user });
   }
 

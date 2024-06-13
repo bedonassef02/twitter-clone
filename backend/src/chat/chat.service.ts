@@ -10,7 +10,7 @@ export class ChatService {
     @InjectModel(Chat.name) private readonly chatModel: Model<ChatDocument>,
   ) {}
 
-  create(chatDto: ChatDto) {
+  create(chatDto: ChatDto): Promise<ChatDocument> {
     return this.chatModel.create(chatDto);
   }
 
@@ -60,7 +60,7 @@ export class ChatService {
       .sort({ timestamp: 1 })
       .exec();
   }
-  clear(user: string, id: string) {
+  clear(user: string, id: string): Promise<any> {
     return this.chatModel.deleteMany({
       $or: [
         { senderId: user, receiverId: id },
@@ -69,7 +69,7 @@ export class ChatService {
     });
   }
 
-  remove(id: string) {
-    return this.chatModel.findByIdAndDelete(id);
+  async remove(id: string): Promise<void> {
+    await this.chatModel.findByIdAndDelete(id);
   }
 }

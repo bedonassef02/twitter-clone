@@ -19,8 +19,8 @@ export class FollowService {
     private readonly profileService: ProfileService,
   ) {}
 
-  async create(createFollowDto: FollowDto) {
-    const profile: Profile = await this.profileService.findProfileByUsername(
+  async create(createFollowDto: FollowDto): Promise<Follow> {
+    const profile: Profile = await this.profileService.findByUsername(
       createFollowDto.username,
     );
     this.prepareFollowDto(createFollowDto, profile);
@@ -29,29 +29,29 @@ export class FollowService {
     return this.followModel.create(createFollowDto);
   }
 
-  async getFollowing(followerId: string) {
+  async findFollowing(followerId: string): Promise<Follow[]> {
     return this.followModel.find({ followerId, accepted: true }).exec();
   }
 
-  async getFollowers(followingId: string) {
+  async findFollowers(followingId: string): Promise<Follow[]> {
     return this.followModel.find({ followingId, accepted: true }).exec();
   }
 
-  async getFollowRequests(followerId: string) {
+  async findFollowRequests(followerId: string): Promise<Follow[]> {
     return this.followModel.find({ followerId, accepted: false }).exec();
   }
 
-  async update(id: string) {
+  async update(id: string): Promise<Follow> {
     return this.followModel
       .findByIdAndUpdate(id, { accepted: true }, { new: true })
       .exec();
   }
 
-  async remove(id: string) {
-    return this.followModel.findByIdAndDelete(id).exec();
+  async remove(id: string): Promise<void> {
+    await this.followModel.findByIdAndDelete(id).exec();
   }
 
-  private validateSelfFollow(createFollowDto: FollowDto) {
+  private validateSelfFollow(createFollowDto: FollowDto): void {
     if (createFollowDto.followerId === createFollowDto.followingId.toString()) {
       throw new BadRequestException('You cannot follow yourself');
     }
@@ -67,7 +67,9 @@ export class FollowService {
     return !!follow;
   }
 
-  private async checkIfAlreadyFollowing(createFollowDto: FollowDto) {
+  private async checkIfAlreadyFollowing(
+    createFollowDto: FollowDto,
+  ): Promise<void> {
     const alreadyFollowing = await this.isFollowed(createFollowDto);
     if (alreadyFollowing) {
       throw new BadRequestException('You are already following this user');

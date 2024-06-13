@@ -15,12 +15,14 @@ export class NotificationsService {
     private readonly notificationModel: Model<NotificationDocument>,
   ) {}
 
-  findAll(user: string) {
+  findAll(user: string): Promise<NotificationDocument[]> {
     return this.notificationModel.find({ user });
   }
 
   @OnEvent('notification.create')
-  create(createNotificationDto: CreateNotificationDto) {
+  create(
+    createNotificationDto: CreateNotificationDto,
+  ): Promise<NotificationDocument> {
     return this.notificationModel.create(createNotificationDto);
   }
 }

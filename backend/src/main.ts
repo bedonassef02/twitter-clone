@@ -9,18 +9,18 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
-      .setTitle('Twitter APP API')
-      .setDescription('The Twitter API description')
-      .setVersion('1.0')
-      .addServer('http://localhost:3000/', 'Local environment')
-      .addServer('https://twitter-api-ld6h.onrender.com/', 'Production')
-      .build();
+    .setTitle('Twitter APP API')
+    .setDescription('The Twitter API description')
+    .setVersion('1.0')
+    .addServer('http://localhost:3000/', 'Local environment')
+    .addServer('https://twitter-api-ld6h.onrender.com/', 'Production')
+    .build();
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
   app.useGlobalPipes(
-      new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
 
   app.enableVersioning();

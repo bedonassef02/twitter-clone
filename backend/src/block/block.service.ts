@@ -9,7 +9,7 @@ export class BlockService {
   constructor(
     @InjectModel(Block.name) private readonly blockModel: Model<BlockDocument>,
   ) {}
-  async create(blockDto: BlockDto) {
+  async create(blockDto: BlockDto): Promise<BlockDocument> {
     if (blockDto.blockedUserId === blockDto.userId) {
       throw new BadRequestException('you cannot block yourself');
     }
@@ -19,11 +19,11 @@ export class BlockService {
     return this.blockModel.create(blockDto);
   }
 
-  findAll(userId: string) {
+  findAll(userId: string): Promise<BlockDocument[]> {
     return this.blockModel.find({ userId });
   }
 
-  findOne(blockDto: BlockDto) {
+  findOne(blockDto: BlockDto): Promise<BlockDocument> {
     return this.blockModel.findOne(blockDto);
   }
 

@@ -10,11 +10,11 @@ export class BookmarksService {
     @InjectModel(Bookmark.name)
     private readonly bookmarkModel: Model<BookmarkDocument>,
   ) {}
-  create(bookmarkDto: BookmarkDto) {
+  create(bookmarkDto: BookmarkDto): Promise<BookmarkDocument> {
     return this.bookmarkModel.create(bookmarkDto);
   }
 
-  findAll(user: string) {
+  findAll(user: string): Promise<BookmarkDocument[]> {
     return this.bookmarkModel.find({ user });
   }
 

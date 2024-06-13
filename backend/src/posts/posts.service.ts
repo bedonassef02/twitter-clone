@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -11,35 +10,31 @@ import { Model } from 'mongoose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CreateNotificationDto } from '../notifications/dto/create-notification.dto';
 import { LikesService } from '../likes/likes.service';
+import {
+  checkIfPostEmpty,
+  checkPostType,
+  createPostNotification,
+} from './utils/helpers/create-post.helper';
+import { PostsStatusService } from './utils/services/posts-status.service';
 
 @Injectable()
 export class PostsService {
   constructor(
     @InjectModel(Post.name) private readonly postModel: Model<PostDocument>,
     private readonly likesService: LikesService,
+    private readonly postsStatusService: PostsStatusService,
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
   create(createPostDto: CreatePostDto) {
-    if (
-      !createPostDto.content &&
-      !createPostDto.images &&
-      !createPostDto.repost
-    ) {
-      throw new BadRequestException("you can't create empty post");
-    }
+    checkIfPostEmpty(createPostDto);
+    checkPostType(createPostDto);
     if (createPostDto.type === 'comment' || createPostDto.repost) {
-      const createNotificationDto: CreateNotificationDto = {
-        post: createPostDto.repost,
-        from: createPostDto.user,
-        type: createPostDto.type || 'repost',
-        user: createPostDto.user,
-      };
+      const createNotificationDto: CreateNotificationDto =
+        createPostNotification(createPostDto);
       this.eventEmitter.emit('notification.create', createNotificationDto);
     }
-    if (createPostDto.repost && createPostDto.type !== 'comment') {
-      createPostDto.type = 'repost';
-    }
+
     return this.postModel.create(createPostDto);
   }
 
@@ -60,9 +55,11 @@ export class PostsService {
   }
 
   async findCount(id: string): Promise<any> {
-    const likes = await this.likesService.countPostLikes(id);
-    const comments = await this.countPostComments(id);
-    const reposts = await this.countReposts(id);
+    const [likes, comments, reposts] = await Promise.all([
+      this.likesService.countPostLikes(id),
+      this.postsStatusService.countPostComments(id),
+      this.postsStatusService.countReposts(id),
+    ]);
     return {
       comments,
       reposts,
@@ -85,27 +82,6 @@ export class PostsService {
       .find({
         $or: [{ content: { $regex: regex } }],
       })
-      .exec();
-  }
-
-  async countUserPosts(userId: string): Promise<number> {
-    return this.postModel.countDocuments({ user: userId }).exec();
-  }
-
-  async countUserMedia(userId: string): Promise<number> {
-    return this.postModel
-      .countDocuments({ user: userId, images: { $ne: null } })
-      .exec();
-  }
-  private async countPostComments(postId: string): Promise<number> {
-    return this.postModel
-      .countDocuments({ repost: postId, type: 'comment' })
-      .exec();
-  }
-
-  private async countReposts(postId: string): Promise<number> {
-    return this.postModel
-      .countDocuments({ repost: postId, type: 'repost' })
       .exec();
   }
 }

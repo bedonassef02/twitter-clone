@@ -4,44 +4,48 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ProfileGuard } from './guards/profile.guard';
+import { ProfileStatusService } from './services/profile-status.service';
 
 @ApiTags('Profile')
 @ApiBearerAuth()
 @Controller('profile')
 export class ProfileController {
-  constructor(private readonly profileService: ProfileService) {}
+  constructor(
+    private readonly profileService: ProfileService,
+    private readonly profileStatusService: ProfileStatusService,
+  ) {}
   @UseGuards(ProfileGuard)
   @Get(':username')
   findOne(@Param('username') username: string) {
-    return this.profileService.findProfileByUsername(username);
+    return this.profileService.findByUsername(username);
   }
 
   @Get(':username/count')
-  count(@Param('username') username: string) {
-    return this.profileService.count(username);
+  findCount(@Param('username') username: string) {
+    return this.profileStatusService.count(username);
   }
   @UseGuards(ProfileGuard)
   @Get(':username/likes')
-  getUserLikes(@Param('username') username: string) {
-    return this.profileService.getUserLikes(username);
+  findLikes(@Param('username') username: string) {
+    return this.profileService.findLikes(username);
   }
 
   @UseGuards(ProfileGuard)
   @Get(':username/posts')
-  getUserPosts(@Param('username') username: string) {
-    return this.profileService.getUserPosts(username);
+  findPosts(@Param('username') username: string) {
+    return this.profileService.findPosts(username);
   }
 
   @UseGuards(ProfileGuard)
   @Get(':username/following')
-  getUserFollowing(@Param('username') username: string) {
-    return this.profileService.getUserFollowing(username);
+  findFollowing(@Param('username') username: string) {
+    return this.profileService.findFollowing(username);
   }
 
   @UseGuards(ProfileGuard)
   @Get(':username/followers')
-  getUserFollowers(@Param('username') username: string) {
-    return this.profileService.getUserFollowers(username);
+  findFollowers(@Param('username') username: string) {
+    return this.profileService.findFollowers(username);
   }
 
   @Patch()

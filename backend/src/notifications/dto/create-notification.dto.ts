@@ -1,5 +1,5 @@
 import { IsIn, IsMongoId, IsNotEmpty } from 'class-validator';
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateNotificationDto {
   @IsNotEmpty()
@@ -7,7 +7,8 @@ export class CreateNotificationDto {
   @ApiProperty({
     example: '665c6fac1ce871cc5fedcebe',
     required: true,
-    description: 'The MongoDB ObjectId of the post associated with the notification.',
+    description:
+      'The MongoDB ObjectId of the post associated with the notification.',
   })
   post: string;
   @IsNotEmpty()
@@ -15,7 +16,8 @@ export class CreateNotificationDto {
   @ApiProperty({
     example: 'like',
     required: true,
-    description: 'The type of notification, which can be "repost", "comment", or "like".',
+    description:
+      'The type of notification, which can be "repost", "comment", or "like".',
   })
   type: string;
   @IsNotEmpty()
@@ -23,7 +25,8 @@ export class CreateNotificationDto {
   @ApiProperty({
     example: '665db6f16acfd905f4e909ff',
     required: true,
-    description: 'The MongoDB ObjectId of the user who triggered the notification.',
+    description:
+      'The MongoDB ObjectId of the user who triggered the notification.',
   })
   from: string;
   user: string;

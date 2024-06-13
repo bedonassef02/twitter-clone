@@ -1,5 +1,5 @@
 import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ChatDto {
   senderId: string;
