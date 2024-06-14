@@ -10,12 +10,8 @@ export class BlockService {
     @InjectModel(Block.name) private readonly blockModel: Model<BlockDocument>,
   ) {}
   async create(blockDto: BlockDto): Promise<BlockDocument> {
-    if (blockDto.blockedUserId === blockDto.userId) {
-      throw new BadRequestException('you cannot block yourself');
-    }
-    if (await this.findOne(blockDto)) {
-      throw new BadRequestException('you already blocked this user');
-    }
+    this.isSameUser(blockDto);
+    await this.isBlockedBefore(blockDto);
     return this.blockModel.create(blockDto);
   }
 
@@ -29,5 +25,17 @@ export class BlockService {
 
   remove(id: string) {
     return this.blockModel.findByIdAndDelete(id);
+  }
+
+  private isSameUser(blockDto: BlockDto) {
+    if (blockDto.blockedUserId === blockDto.userId) {
+      throw new BadRequestException('you cannot block yourself');
+    }
+  }
+
+  private async isBlockedBefore(blockDto: BlockDto) {
+    if (await this.findOne(blockDto)) {
+      throw new BadRequestException('you already blocked this user');
+    }
   }
 }

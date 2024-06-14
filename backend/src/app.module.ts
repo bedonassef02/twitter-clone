@@ -15,6 +15,7 @@ import { BlockModule } from './block/block.module';
 import { ChatModule } from './chat/chat.module';
 import { SearchModule } from './search/search.module';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
+import { CacheModule } from '@nestjs/cache-manager';
 @Module({
   imports: [
     ConfigModule.forRoot({ expandVariables: true, isGlobal: true }),
@@ -31,6 +32,11 @@ import { BookmarksModule } from './bookmarks/bookmarks.module';
     ChatModule,
     SearchModule,
     BookmarksModule,
+    CacheModule.register({
+      max: 10,
+      ttl: 600000,
+      isGlobal: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

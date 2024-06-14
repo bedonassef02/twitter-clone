@@ -15,8 +15,8 @@ import { PostsModule } from '../posts/posts.module';
 import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.middleware';
 import { FollowModule } from '../follow/follow.module';
-import { ProfileStatusService } from './services/profile-status.service';
 import { BlockModule } from '../block/block.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -27,9 +27,14 @@ import { BlockModule } from '../block/block.module';
     forwardRef(() => PostsModule),
     FollowModule,
     BlockModule,
+    CacheModule.register({
+      max: 10,
+      ttl: 60000,
+      isGlobal: true,
+    }),
   ],
   controllers: [ProfileController],
-  providers: [ProfileService, ProfileStatusService],
+  providers: [ProfileService],
   exports: [ProfileService],
 })
 export class ProfileModule implements NestModule {

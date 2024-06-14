@@ -27,7 +27,20 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto): Promise<AuthResponse> {
-    const user = await this.usersService.findOne(loginDto.username);
+    const user: UserDocument = await this.usersService.findOne(
+      loginDto.username,
+    );
+    await this.checkPassword(user, loginDto);
+    return this.createResponse(user);
+  }
+
+  async createResponse(user: UserDocument): Promise<AuthResponse> {
+    const payload: Payload = createPayload(user);
+    const token = await this.tokenService.generate(payload);
+    return authResponse(payload, token);
+  }
+
+  private async checkPassword(user: UserDocument, loginDto: LoginDto) {
     if (
       !user ||
       !(await this.passwordService.compare(loginDto.password, user.password))
@@ -36,12 +49,5 @@ export class AuthService {
         'username or password does not match our records',
       );
     }
-    return this.createResponse(user);
-  }
-
-  async createResponse(user: UserDocument): Promise<AuthResponse> {
-    const payload: Payload = createPayload(user);
-    const token = await this.tokenService.generate(payload);
-    return authResponse(payload, token);
   }
 }

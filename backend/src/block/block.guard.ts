@@ -7,6 +7,7 @@ import {
 import { BlockService } from './block.service';
 import { ProfileService } from '../profile/profile.service';
 import { Profile } from '../profile/entities/profile.entity';
+import { Block } from './entities/block.entity';
 
 @Injectable()
 export class BlockGuard implements CanActivate {
@@ -21,37 +22,41 @@ export class BlockGuard implements CanActivate {
     const username = params.username;
 
     // Allow access if the user is trying to access their own profile
-    if (username === user.username) {
+    if (this.isAccessingOwnProfile(user.username, username)) {
       return true;
     }
 
-    // Fetch profiles for the given usernames
-    const userProfile: Profile = await this.profileService.findByUsername(
-      user.username,
-    );
-    const blockedUserProfile: Profile =
-      await this.profileService.findByUsername(username);
+    const userProfile: Profile = await this.getUserProfile(user.username);
+    const blockedUserProfile: Profile = await this.getUserProfile(username);
 
-    // Check if the user is blocked by the other user
-    const isBlockedByOtherUser = await this.blockService.findOne({
-      userId: blockedUserProfile.user,
+    await this.checkIfBlocked(userProfile, blockedUserProfile);
+    await this.checkIfBlocked(blockedUserProfile, userProfile);
+
+    return true;
+  }
+
+  private isAccessingOwnProfile(
+    userUsername: string,
+    targetUsername: string,
+  ): boolean {
+    return userUsername === targetUsername;
+  }
+
+  private async getUserProfile(username: string): Promise<Profile> {
+    return this.profileService.findByUsername(username);
+  }
+
+  private async checkIfBlocked(
+    userProfile: Profile,
+    targetProfile: Profile,
+  ): Promise<void> {
+    const isBlocked: Block = await this.blockService.findOne({
+      userId: targetProfile.user,
       blockedUserId: userProfile.user,
     });
 
-    if (isBlockedByOtherUser) {
+    if (isBlocked) {
       throw new ForbiddenException('Access to this user is blocked.');
     }
-
-    // Check if the other user is blocked by the current user
-    const isBlockedByCurrentUser = await this.blockService.findOne({
-      userId: userProfile.user,
-      blockedUserId: blockedUserProfile.user,
-    });
-
-    if (isBlockedByCurrentUser) {
-      throw new ForbiddenException('This user has blocked you.');
-    }
-
-    return true;
   }
 }

@@ -1,10 +1,17 @@
-import { Controller, Get, Body, Patch, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ProfileGuard } from './guards/profile.guard';
-import { ProfileStatusService } from './services/profile-status.service';
 import { BlockGuard } from '../block/block.guard';
 import { ProfileResponse } from './dto/responses/profile.response';
 import { ProfileCountResponse } from './dto/responses/profile-count.response';
@@ -12,15 +19,14 @@ import { LikeDocument } from '../likes/entities/like.entity';
 import { LikeResponse } from '../likes/dto/responses/like.response';
 import { PostResponse } from '../posts/dto/responses/post.response';
 import { FollowResponse } from '../follow/dto/responses/follow.response';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @ApiTags('Profile')
 @ApiBearerAuth()
 @Controller('profile')
+@UseInterceptors(CacheInterceptor)
 export class ProfileController {
-  constructor(
-    private readonly profileService: ProfileService,
-    private readonly profileStatusService: ProfileStatusService,
-  ) {}
+  constructor(private readonly profileService: ProfileService) {}
   @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username')
   @ApiOkResponse({
@@ -35,7 +41,7 @@ export class ProfileController {
     type: ProfileCountResponse,
   })
   findCount(@Param('username') username: string) {
-    return this.profileStatusService.count(username);
+    return this.profileService.count(username);
   }
   @UseGuards(ProfileGuard, BlockGuard)
   @Get(':username/likes')

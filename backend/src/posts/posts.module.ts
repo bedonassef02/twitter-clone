@@ -13,30 +13,17 @@ import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.mid
 import { AuthModule } from '../auth/auth.module';
 import { UsersModule } from '../users/users.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { ProfileModule } from '../profile/profile.module';
 import { FollowModule } from '../follow/follow.module';
 import { GuardService } from './services/guard.service';
 import { LikesModule } from '../likes/likes.module';
 import { PostsStatusService } from './utils/services/posts-status.service';
+import { multerHelper } from './utils/helpers/multer.helper';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Post.name, schema: PostSchema }]),
-    MulterModule.register({
-      storage: diskStorage({
-        destination: './uploads', // Choose your preferred storage path
-        filename: (req, file, cb) => {
-          const uniqueSuffix =
-            Date.now() + '-' + Math.round(Math.random() * 1e9);
-          cb(
-            null,
-            `${file.fieldname}-${uniqueSuffix}${extname(file.originalname)}`,
-          );
-        },
-      }),
-    }),
+    MulterModule.register(multerHelper),
     AuthModule,
     UsersModule,
     LikesModule,

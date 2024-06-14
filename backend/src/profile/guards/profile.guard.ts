@@ -15,21 +15,12 @@ export class ProfileGuard implements CanActivate {
       return true;
     }
 
-    try {
-      const userProfile: Profile = await this.guardService.getProfile(username);
+    const userProfile: Profile = await this.guardService.getProfile(username);
 
-      if (
-        userProfile &&
-        (!userProfile.isPrivate ||
-          (await this.guardService.isUserFollowing(userId, userProfile.user)))
-      ) {
-        return true;
-      }
-    } catch (error) {
-      // Log the error or handle it accordingly
-      console.error('Error in ProfileGuard:', error);
-    }
-
-    return false;
+    return (
+      userProfile &&
+      (!userProfile.isPrivate ||
+        (await this.guardService.isUserFollowing(userId, userProfile.user)))
+    );
   }
 }
