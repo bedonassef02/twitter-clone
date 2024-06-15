@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { UsersService } from '../../../../users/users.service';
 import { AuthService } from '../../../auth.service';
-import { UserDocument } from '../../../../users/entities/user.entity';
 import { AuthResponse } from '../../../dto/responses/auth.response';
 
 @Injectable()

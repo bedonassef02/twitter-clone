@@ -4,24 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="auth response">
-      <change afterPath="$PROJECT_DIR$/backend/src/notifications/utils/notification-schema.helper.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/posts/utils/helpers/multer.helper.ts" afterDir="false" />
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="clean code">
+      <change afterPath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/auth/entities/secret-key.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/auth/services/two-factor.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/block/block.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/block/block.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/notifications/notifications.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/notifications.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/dto/responses/auth.response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/dto/responses/auth.response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/helpers/auth-response.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/helpers/auth-response.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/helpers/create-payload.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/helpers/create-payload.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/interfaces/payload.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/interfaces/payload.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/guards/profile.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/guards/profile.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/services/profile-status.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/dto/create-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/entities/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +58,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/BEDO/JOB/PROJECTS/Nest js/twitter-clone/backend/src/posts/dto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/BEDO/JOB/PROJECTS/Nest js/twitter-clone/backend/src/bookmarks&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -70,6 +71,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\bookmarks" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\posts\dto" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\frontend" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\posts\guards" />
@@ -105,7 +107,9 @@
       <workItem from="1718294894613" duration="6320000" />
       <workItem from="1718319901328" duration="18000" />
       <workItem from="1718351857671" duration="2855000" />
-      <workItem from="1718362433225" duration="97000" />
+      <workItem from="1718362433225" duration="584000" />
+      <workItem from="1718449291855" duration="880000" />
+      <workItem from="1718453957402" duration="4657000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -235,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718285071655</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="clean code">
+      <option name="closed" value="true" />
+      <created>1718362616443</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718362616443</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +267,7 @@
     <MESSAGE value="google auth" />
     <MESSAGE value="improve" />
     <MESSAGE value="auth response" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth response" />
+    <MESSAGE value="clean code" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
   </component>
 </project>

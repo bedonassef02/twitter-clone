@@ -9,4 +9,8 @@ export class AuthResponse {
   username: string;
   @ApiProperty()
   access_token: string;
+  @ApiProperty()
+  isTwoFactorAuthenticated: boolean;
+  @ApiProperty()
+  isPassed2FA: boolean;
 }

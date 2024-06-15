@@ -7,5 +7,7 @@ export function authResponse(payload: Payload, token: string): AuthResponse {
     name: payload.name,
     username: payload.username,
     access_token: token,
+    isTwoFactorAuthenticated: payload.isTwoFactorAuthenticated,
+    isPassed2FA: payload.isPassed2FA,
   };
 }

@@ -25,7 +25,7 @@ import { PostsGuard } from './guards/posts.guard';
 import { PostResponse } from './dto/responses/post.response';
 import { PostCountResponse } from './dto/responses/post-count.response';
 import { PostDocument } from './entities/post.entity';
-import { CacheInterceptor, CacheKey } from '@nestjs/cache-manager';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @ApiTags('Posts')
 @ApiBearerAuth()

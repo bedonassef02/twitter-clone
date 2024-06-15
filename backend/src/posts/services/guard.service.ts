@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PostsService } from '../posts.service';
 import { ProfileService } from '../../profile/profile.service';
 import { FollowService } from '../../follow/follow.service';

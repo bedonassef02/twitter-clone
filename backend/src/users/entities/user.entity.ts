@@ -13,6 +13,11 @@ export class User {
   password: string;
   @Prop()
   googleId: string;
+
+  @Prop()
+  twoFactorSecret?: string;
+  @Prop({ default: false })
+  isTwoFactorAuthenticated: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

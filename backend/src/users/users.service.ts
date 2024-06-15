@@ -38,4 +38,14 @@ export class UsersService {
       })
       .exec();
   }
+  setTwoFactorAuthenticationStatus(
+    id: string,
+    isTwoFactorAuthenticated: boolean,
+  ) {
+    return this.userModel.findByIdAndUpdate(
+      id,
+      { isTwoFactorAuthenticated },
+      { new: true },
+    );
+  }
 }

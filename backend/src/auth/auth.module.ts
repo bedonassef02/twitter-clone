@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { PasswordService } from './services/password.service';
@@ -10,6 +15,12 @@ import { TokenService } from './services/token.service';
 import { GoogleAuthController } from './oauth/google/controllers/google-auth.controller';
 import { GoogleAuthService } from './oauth/google/services/google-auth.service';
 import { GoogleStrategy } from './oauth/google/strategies/google.strategy';
+import { TwoFactorService } from './services/two-factor.service';
+import { AuthMiddleware } from './middlewares/auth.middleware';
+import { IsUserUpdatedMiddleware } from './middlewares/is-user-updated.middleware';
+import { TwoFactorController } from './controllers/two-factor.controller';
+import { MongooseModule } from '@nestjs/mongoose';
+import { SecretKey, SecretKeySchema } from './entities/secret-key.entity';
 
 @Module({
   imports: [
@@ -24,8 +35,11 @@ import { GoogleStrategy } from './oauth/google/strategies/google.strategy';
         },
       }),
     }),
+    MongooseModule.forFeature([
+      { name: SecretKey.name, schema: SecretKeySchema },
+    ]),
   ],
-  controllers: [AuthController, GoogleAuthController],
+  controllers: [AuthController, TwoFactorController, GoogleAuthController],
   providers: [
     AuthService,
     PasswordService,
@@ -33,7 +47,14 @@ import { GoogleStrategy } from './oauth/google/strategies/google.strategy';
     IsUniqueConstraint,
     GoogleAuthService,
     GoogleStrategy,
+    TwoFactorService,
   ],
   exports: [TokenService],
 })
-export class AuthModule {}
+export class AuthModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer
+      .apply(AuthMiddleware, IsUserUpdatedMiddleware)
+      .forRoutes(TwoFactorController);
+  }
+}
