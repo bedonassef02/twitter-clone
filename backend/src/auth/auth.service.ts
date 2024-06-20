@@ -3,7 +3,7 @@ import { RegisterDto } from './dto/register.dto';
 import { UsersService } from '../users/users.service';
 import { PasswordService } from './services/password.service';
 import { LoginDto } from './dto/login.dto';
-import { User, UserDocument } from '../users/entities/user.entity';
+import { UserDocument } from '../users/entities/user.entity';
 import { createPayload } from './utils/helpers/create-payload.helper';
 import { Payload } from './utils/interfaces/payload.interface';
 import { TokenService } from './services/token.service';
@@ -37,7 +37,10 @@ export class AuthService {
     return this.createResponse(user);
   }
 
-  async createResponse(user: UserDocument, isPassed2FA:boolean=false): Promise<AuthResponse> {
+  async createResponse(
+    user: UserDocument,
+    isPassed2FA: boolean = false,
+  ): Promise<AuthResponse> {
     const payload: Payload = createPayload(user, isPassed2FA);
     const token = await this.tokenService.generate(payload);
     return authResponse(payload, token);

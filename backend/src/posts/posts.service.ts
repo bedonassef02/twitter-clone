@@ -8,7 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Post, PostDocument } from './entities/post.entity';
 import { Model } from 'mongoose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { CreateNotificationDto } from '../notifications/dto/create-notification.dto';
+import { NotificationDto } from '../notifications/dto/notification.dto';
 import { LikesService } from '../likes/likes.service';
 import {
   checkIfPostEmpty,
@@ -31,7 +31,7 @@ export class PostsService {
     checkIfPostEmpty(createPostDto);
     checkPostType(createPostDto);
     if (createPostDto.type === 'comment' || createPostDto.repost) {
-      const createNotificationDto: CreateNotificationDto =
+      const createNotificationDto: NotificationDto =
         createPostNotification(createPostDto);
       this.eventEmitter.emit('notification.create', createNotificationDto);
     }

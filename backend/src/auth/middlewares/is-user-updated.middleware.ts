@@ -11,6 +11,9 @@ export class IsUserUpdatedMiddleware implements NestMiddleware {
   async use(req: any, res: any, next: () => void) {
     const user = req.user;
     const dbUser: any = await this.userService.findById(user.id);
+    if (!dbUser) {
+      throw new UnauthorizedException();
+    }
     const lastUpdate: number = parseInt(
       (dbUser.updatedAt.getTime() / 1000).toString(),
       10,

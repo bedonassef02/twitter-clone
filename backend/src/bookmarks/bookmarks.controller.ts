@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UsePipes,
+} from '@nestjs/common';
 import { BookmarksService } from './bookmarks.service';
 import { BookmarkDto } from './dto/bookmark.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { BookmarkDocument } from './entities/bookmark.entity';
+import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 
 @ApiTags('Bookmarks')
 @ApiBearerAuth()
@@ -26,6 +35,7 @@ export class BookmarksController {
   }
 
   @Delete(':id')
+  @UsePipes(ParseMongoIdPipe)
   remove(@Param('id') id: string) {
     return this.bookmarksService.remove(id);
   }

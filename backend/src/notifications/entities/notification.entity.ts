@@ -8,7 +8,7 @@ export type NotificationDocument = HydratedDocument<Notification>;
 export class Notification {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   user: string;
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: true })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: false })
   post: string;
   @Prop()
   type: string;

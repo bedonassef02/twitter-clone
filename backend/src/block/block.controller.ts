@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UsePipes,
+} from '@nestjs/common';
 import { BlockService } from './block.service';
 import { BlockDto } from './dto/block.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { BlockDocument } from './entities/block.entity';
+import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 
 @ApiTags('Block')
 @ApiBearerAuth()
@@ -26,6 +35,7 @@ export class BlockController {
   }
 
   @Delete(':id')
+  @UsePipes(ParseMongoIdPipe)
   remove(@Param('id') id: string) {
     return this.blockService.remove(id);
   }

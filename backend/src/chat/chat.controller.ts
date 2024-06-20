@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UsePipes,
+} from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { ChatDto } from './dto/chat.dto';
 import { User } from '../users/utils/decorators/user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ChatDocument } from './entities/chat.entity';
+import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 
 @ApiTags('Chat')
 @ApiBearerAuth()
@@ -26,6 +35,7 @@ export class ChatController {
   }
 
   @Get(':id')
+  @UsePipes(ParseMongoIdPipe)
   findOne(
     @User('id') user: string,
     @Param('id') id: string,
@@ -34,11 +44,13 @@ export class ChatController {
   }
 
   @Delete(':id')
+  @UsePipes(ParseMongoIdPipe)
   remove(@Param('id') id: string): Promise<any> {
     return this.chatService.remove(id);
   }
 
   @Delete(':id/clear')
+  @UsePipes(ParseMongoIdPipe)
   async clear(
     @User('id') user: string,
     @Param('id') id: string,

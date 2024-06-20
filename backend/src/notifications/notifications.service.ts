@@ -5,7 +5,7 @@ import {
   NotificationDocument,
 } from './entities/notification.entity';
 import { Model } from 'mongoose';
-import { CreateNotificationDto } from './dto/create-notification.dto';
+import { NotificationDto } from './dto/notification.dto';
 import { OnEvent } from '@nestjs/event-emitter';
 
 @Injectable()
@@ -19,9 +19,12 @@ export class NotificationsService {
     return this.notificationModel.find({ user });
   }
 
+  findCount(user: string): Promise<number> {
+    return this.notificationModel.countDocuments({ user, seen: false });
+  }
   @OnEvent('notification.create')
   create(
-    createNotificationDto: CreateNotificationDto,
+    createNotificationDto: NotificationDto,
   ): Promise<NotificationDocument> {
     return this.notificationModel.create(createNotificationDto);
   }

@@ -14,4 +14,9 @@ export class NotificationsController {
   findAll(@User('id') user: string): Promise<NotificationDocument[]> {
     return this.notificationsService.findAll(user);
   }
+
+  @Get('/count')
+  findCount(@User('id') user: string): Promise<number> {
+    return this.notificationsService.findCount(user);
+  }
 }

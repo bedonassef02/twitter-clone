@@ -6,6 +6,7 @@ import {
   Param,
   Query,
   UseGuards,
+  UsePipes,
 } from '@nestjs/common';
 import { LikesService } from './likes.service';
 import { LikeDto } from './dto/like.dto';
@@ -38,6 +39,7 @@ export class LikesController {
     return this.likesService.findAll(post);
   }
   @Get(':id')
+  @UsePipes(ParseMongoIdPipe)
   findOne(
     @User('id') user: string,
     @Param('id') post: string,

@@ -5,24 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="clean code">
-      <change afterPath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/auth/entities/secret-key.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/auth/services/two-factor.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/notifications/dto/notification.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/dto/responses/auth.response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/dto/responses/auth.response.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/oauth/google/services/google-auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/helpers/auth-response.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/helpers/auth-response.helper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/helpers/create-payload.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/helpers/create-payload.helper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/utils/interfaces/payload.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/utils/interfaces/payload.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/middlewares/is-user-updated.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/middlewares/is-user-updated.middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/block/block.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/follow/follow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/follow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/likes/likes.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/likes/likes.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/likes/likes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/likes/likes.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/notifications/dto/create-notification.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/notifications/entities/notification.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/entities/notification.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/notifications/notifications.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/notifications.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/notifications/notifications.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/notifications.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/services/guard.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/dto/create-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/users/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/entities/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/utils/helpers/create-post.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/utils/helpers/create-post.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +115,9 @@
       <workItem from="1718362433225" duration="584000" />
       <workItem from="1718449291855" duration="880000" />
       <workItem from="1718453957402" duration="4657000" />
+      <workItem from="1718875651200" duration="15000" />
+      <workItem from="1718878012971" duration="3762000" />
+      <workItem from="1718890268071" duration="723000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />

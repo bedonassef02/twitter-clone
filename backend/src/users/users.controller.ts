@@ -4,6 +4,7 @@ import { ProfileService } from '../profile/profile.service';
 import { UsersService } from './users.service';
 import { UserDocument } from './entities/user.entity';
 import { Profile } from '../profile/entities/profile.entity';
+import { ParseMongoIdPipe } from '../utils/pipes/parse-mongo-id.pipe';
 @ApiTags('Users')
 @ApiBearerAuth()
 @Controller('users')
@@ -13,7 +14,7 @@ export class UsersController {
     private readonly profileService: ProfileService,
   ) {}
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseMongoIdPipe) id: string) {
     const user: UserDocument = await this.usersService.findById(id);
     const profile: Profile = await this.profileService.findByUserId(id);
     return {

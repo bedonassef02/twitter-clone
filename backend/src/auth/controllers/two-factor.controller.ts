@@ -1,8 +1,7 @@
-import { Body, Controller, Get, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { User } from '../../users/utils/decorators/user.decorator';
 import { AuthService } from '../auth.service';
 import { UserDocument } from '../../users/entities/user.entity';
-import { IsString } from 'class-validator';
 
 @Controller('auth')
 export class TwoFactorController {

@@ -1,6 +1,6 @@
 import { CreatePostDto } from '../../dto/create-post.dto';
 import { BadRequestException } from '@nestjs/common';
-import { CreateNotificationDto } from '../../../notifications/dto/create-notification.dto';
+import { NotificationDto } from '../../../notifications/dto/notification.dto';
 
 export function checkIfPostEmpty(createPostDto: CreatePostDto) {
   if (
@@ -20,7 +20,7 @@ export function checkPostType(createPostDto: CreatePostDto) {
 
 export function createPostNotification(
   createPostDto: CreatePostDto,
-): CreateNotificationDto {
+): NotificationDto {
   return {
     post: createPostDto.repost,
     from: createPostDto.user,

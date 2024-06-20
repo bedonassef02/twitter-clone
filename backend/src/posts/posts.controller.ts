@@ -8,6 +8,7 @@ import {
   UseInterceptors,
   UploadedFiles,
   UseGuards,
+  UsePipes,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -67,7 +68,8 @@ export class PostsController {
   @ApiOkResponse({
     type: PostResponse,
   })
-  findOne(@Param('id', ParseMongoIdPipe) id: string): Promise<PostDocument> {
+  @UsePipes(ParseMongoIdPipe)
+  findOne(@Param('id') id: string): Promise<PostDocument> {
     return this.postsService.findOne(id);
   }
 
@@ -76,14 +78,16 @@ export class PostsController {
   @ApiOkResponse({
     type: PostCountResponse,
   })
+  @UsePipes(ParseMongoIdPipe)
   @UseInterceptors(CacheInterceptor)
-  count(@Param('id', ParseMongoIdPipe) id: string): Promise<PostCountResponse> {
+  count(@Param('id') id: string): Promise<PostCountResponse> {
     return this.postsService.findCount(id);
   }
 
   @UseGuards(PostsGuard)
   @Delete(':id')
   @ApiNoContentResponse()
+  @UsePipes(ParseMongoIdPipe)
   remove(@User('id') userId: string, @Param('id') id: string): Promise<void> {
     return this.postsService.remove(userId, id);
   }

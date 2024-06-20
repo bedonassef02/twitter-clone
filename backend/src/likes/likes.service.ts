@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Like, LikeDocument } from './entities/like.entity';
 import { Model } from 'mongoose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { CreateNotificationDto } from '../notifications/dto/create-notification.dto';
+import { NotificationDto } from '../notifications/dto/notification.dto';
 
 @Injectable()
 export class LikesService {
@@ -16,7 +16,7 @@ export class LikesService {
   async toggle(likeDto: LikeDto): Promise<LikeDocument | null> {
     const isLikeExist = await this.findOne(likeDto);
     if (!isLikeExist) {
-      const createNotificationDto: CreateNotificationDto = {
+      const createNotificationDto: NotificationDto = {
         post: likeDto.post,
         from: likeDto.user,
         type: 'like',
