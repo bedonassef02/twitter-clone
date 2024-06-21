@@ -5,29 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="clean code">
-      <change afterPath="$PROJECT_DIR$/backend/src/notifications/dto/notification.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/users/dto/update-user.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/utils/helpers/is-valid-mongo-id.helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/middlewares/is-user-updated.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/middlewares/is-user-updated.middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/block/block.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/block/block.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/bookmarks/bookmarks.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/follow.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/follow/follow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/follow/follow.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/likes/likes.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/likes/likes.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/likes/likes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/likes/likes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/notifications/dto/create-notification.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/notifications/entities/notification.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/entities/notification.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/notifications/notifications.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/notifications.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/notifications/notifications.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/notifications/notifications.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/dto/login.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/dto/login.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/auth/dto/register.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/dto/register.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/guards/like-posts.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/guards/like-posts.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/guards/posts.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/guards/posts.guard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/utils/helpers/create-post.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/utils/helpers/create-post.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/users/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/utils/pipes/parse-mongo-id.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/utils/pipes/parse-mongo-id.pipe.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +107,10 @@
       <workItem from="1718453957402" duration="4657000" />
       <workItem from="1718875651200" duration="15000" />
       <workItem from="1718878012971" duration="3762000" />
-      <workItem from="1718890268071" duration="723000" />
+      <workItem from="1718890268071" duration="1211000" />
+      <workItem from="1718896954232" duration="206000" />
+      <workItem from="1718903611070" duration="2352000" />
+      <workItem from="1718966146232" duration="2253000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -255,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718362616443</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="clean code">
+      <option name="closed" value="true" />
+      <created>1718894961570</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718894961570</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

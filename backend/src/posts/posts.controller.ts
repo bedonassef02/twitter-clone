@@ -86,8 +86,8 @@ export class PostsController {
 
   @UseGuards(PostsGuard)
   @Delete(':id')
-  @ApiNoContentResponse()
   @UsePipes(ParseMongoIdPipe)
+  @ApiNoContentResponse()
   remove(@User('id') userId: string, @Param('id') id: string): Promise<void> {
     return this.postsService.remove(userId, id);
   }

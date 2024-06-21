@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsString, Length, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsUnique } from '../utils/decorators/is-unique.decorator';
 
@@ -16,6 +16,9 @@ export class RegisterDto {
   @IsNotEmpty()
   @IsString()
   @Length(3, 20)
+  @Matches(/^[a-zA-Z0-9_]+$/, {
+    message: 'Username can only contain letters, numbers, and underscores',
+  })
   @IsUnique()
   @ApiProperty({
     example: 'john_doe',

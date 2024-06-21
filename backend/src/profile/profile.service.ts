@@ -35,6 +35,7 @@ export class ProfileService {
     return this.profileModel.findOne({ user: user.id }).exec();
   }
 
+  @OnEvent('profile.findOne')
   async findByUserId(user: string): Promise<Profile> {
     return this.profileModel.findOne({ user }).exec();
   }
