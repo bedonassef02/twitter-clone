@@ -16,6 +16,9 @@ import { ChatModule } from './chat/chat.module';
 import { SearchModule } from './search/search.module';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { rateLimit } from './utils/helpers/rate-limit.helper';
+import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
     ConfigModule.forRoot({ expandVariables: true, isGlobal: true }),
@@ -37,8 +40,15 @@ import { CacheModule } from '@nestjs/cache-manager';
       ttl: 600000,
       isGlobal: true,
     }),
+    ThrottlerModule.forRoot(rateLimit),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}

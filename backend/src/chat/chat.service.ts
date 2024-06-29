@@ -3,6 +3,7 @@ import { ChatDto } from './dto/chat.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Chat, ChatDocument } from './entities/chat.entity';
 import { Model } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ChatService {
@@ -15,11 +16,13 @@ export class ChatService {
   }
 
   async findAll(user: string): Promise<ChatDocument[]> {
+    const userId = new ObjectId(user);
+
     return this.chatModel
       .aggregate([
         {
           $match: {
-            $or: [{ senderId: user }, { receiverId: user }],
+            $or: [{ senderId: userId }, { receiverId: userId }],
           },
         },
         {

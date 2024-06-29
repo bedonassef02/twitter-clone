@@ -3,19 +3,12 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import helmet from 'helmet';
+import { SwaggerModule } from '@nestjs/swagger';
+import { options } from './utils/helpers/swagger.helper';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
-
-  const options = new DocumentBuilder()
-    .setTitle('Twitter APP API')
-    .setDescription('The Twitter API description')
-    .setVersion('1.0')
-    .addServer('http://localhost:3000/', 'Local environment')
-    .addServer('https://twitter-api-ld6h.onrender.com/', 'Production')
-    .addBearerAuth()
-    .build();
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
@@ -27,6 +20,7 @@ async function bootstrap(): Promise<void> {
   app.enableVersioning();
   app.enableCors();
   app.use(cookieParser());
+  app.use(helmet());
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 

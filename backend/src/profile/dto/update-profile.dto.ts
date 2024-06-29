@@ -7,6 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import {Type} from "class-transformer";
 
 export class UpdateProfileDto {
   @IsOptional()
@@ -20,6 +21,7 @@ export class UpdateProfileDto {
   bio: string;
 
   @IsOptional()
+  @Type(() => Date)
   @IsDate()
   @ApiProperty({
     example: '1990-01-01',

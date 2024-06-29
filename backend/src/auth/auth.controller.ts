@@ -4,6 +4,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponse } from './dto/responses/auth.response';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {Throttle} from "@nestjs/throttler";
 
 @ApiTags('Auth')
 @Controller('auth')
