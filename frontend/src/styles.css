@@ -1,0 +1,65 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/md-dark-indigo/theme.css";
+body {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container-div {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-inputtext {
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature-settings, normal);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.87);
+  background: black;
+  padding: 1rem 1rem;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 4px;
+  width: 18rem;
+  -webkit-transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -moz-transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -ms-transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -o-transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+.p-password-input {
+  background-color: black;
+  width: 18rem;
+}
+
+.p-dialog .p-dialog-content {
+  background: black;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.p-dialog .p-dialog-header {
+  border-bottom: 0 none;
+  background: black;
+  color: rgba(255, 255, 255, 0.87);
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}/*# sourceMappingURL=styles.css.map */

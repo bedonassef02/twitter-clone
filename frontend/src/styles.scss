@@ -8,6 +8,7 @@ body {
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: black;
   color: white;
+  // height: 100vh;
 }
 
 a {
@@ -26,24 +27,6 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
-/* Small */
-@media (min-width: 768px) {
-  .container-div {
-    width: 750px;
-  }
-}
-/* Medium */
-@media (min-width: 992px) {
-  .container-div {
-    width: 970px;
-  }
-}
-/* Large */
-@media (min-width: 1200px) {
-  .container-div {
-    width: 1170px;
-  }
-}
 
 .p-inputtext {
   font-family: var(--font-family);
@@ -52,18 +35,27 @@ html {
   color: rgba(255, 255, 255, 0.87);
   background: black;
   padding: 1rem 1rem;
-  // border: 1px solid rgba(255, 255, 255, 0.3);
+  //border: 1px solid rgba(255, 255, 255, 0.3);
   transition: background-color 0.2s, border-color 0.2s, color 0.2s,
     box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
   appearance: none;
   border-radius: 4px;
   width: 18rem;
+  -webkit-transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -moz-transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -ms-transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -o-transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
 
 .p-password-input {
   background-color: black;
   width: 18rem;
 }
+
 .p-dialog .p-dialog-content {
   background: black;
   color: rgba(255, 255, 255, 0.87);
@@ -77,4 +69,58 @@ html {
   // padding: 1.5rem;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+}
+
+.profile {
+  .p-dialog .p-dialog-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    margin-top: -37px !important;
+    left: 0;
+    z-index: 3;
+    top: 40px;
+  }
+
+  .p-dialog .p-dialog-header {
+    padding-bottom: 35px;
+    span {
+      left: 65px;
+      z-index: 3;
+      top: 12px;
+      position: absolute;
+    }
+  }
+
+  .btn-sm {
+    position: absolute;
+    right: 20px;
+    z-index: 3;
+    top: 12px;
+  }
+
+  .p-float-label {
+    display: block;
+    position: relative;
+    margin-bottom: 15px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.p-toast {
+  position: fixed;
+  width: 25rem;
+  height: 1rem;
+  padding: 0;
 }

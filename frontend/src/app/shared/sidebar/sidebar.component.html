@@ -4,7 +4,7 @@
   </div>
   <ul class="links">
     <li>
-      <a>
+      <a routerLink="/home">
         <i class="pi pi-home"></i>
         <span>Home</span>
       </a>
@@ -49,7 +49,7 @@
       </a>
     </li>
   </ul>
-  <a class="btn btn-primary mt-5 align-itmes-center post-a">
+  <a class="btn btn-primary align-itmes-center post-a">
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
@@ -66,18 +66,31 @@
   </a>
   <!--
   !USER INFO BUTTON DETAILS
-  <button
-    class="mt-5 rounded-5 py-4 border-0"
-    style="
-      min-width: 52px;
-      min-height: 52px;
-      background-color: rgb(29, 155, 240);
-    "
+  -->
+  <section
+    class="mini-details-section py-4 border-0 drpdown dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
   >
-    <div class="logo"></div>
-    <div class="user-info"></div>
-    <div class="icon">
-      <i></i>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
+    </ul>
+    <div class="logo me-3">
+      <span>
+        {{ userLogo }}
+      </span>
     </div>
-  </button> -->
+    <div class="user-info">
+      <span>
+        <small class="fw-bold d-block" style="color: white">{{
+          userName
+        }}</small>
+        <small style="color: #b8b8b8">{{ name }}</small>
+      </span>
+    </div>
+    <div class="icon">
+      <i class="pi pi-ellipsis-h ms-3"></i>
+    </div>
+  </section>
 </div>

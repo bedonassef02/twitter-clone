@@ -36,7 +36,13 @@
             [style]="{ width: '30rem' }"
             [breakpoints]="{ '921px': '75vw', '575px': '90vw' }"
           >
-            <form #form="ngForm" class="offset-2" (ngSubmit)="onSubmit(form)">
+            <app-loading *ngIf="isLoading" class="offset-5"></app-loading>
+            <form
+              *ngIf="!isLoading"
+              #form="ngForm"
+              class="offset-2"
+              (ngSubmit)="onSubmit(form)"
+            >
               <div
                 *ngIf="!login"
                 class="mt-2 d-flex"
@@ -69,7 +75,7 @@
                   <label for="username">User Name</label>
                 </p-floatLabel>
               </div>
-              <div class="mt-2 mb-3 d-flex" styleClass="dialog-content">
+              <div class="mt-2 d-flex" styleClass="dialog-content">
                 <p-floatLabel>
                   <p-password
                     [toggleMask]="true"
@@ -82,10 +88,15 @@
                   <label for="password">Password</label>
                 </p-floatLabel>
               </div>
+              <small
+                class="text-center text-danger mt-1 mb-2"
+                *ngIf="!form.valid && form.touched"
+                >Form not valid</small
+              >
               <button
                 style="display: block; width: 18rem"
                 type="submit"
-                class="mb-3 btn btn-light"
+                class="mb-3 mt-3 btn btn-light"
               >
                 {{ login ? " Log in" : "sing up" }}
               </button>
@@ -97,6 +108,19 @@
               >
                 {{ login ? " Switch to sign up" : "Switch to sign in" }}
               </button>
+              <span
+                style="display: block; width: 18rem; border: 1px solid red"
+                *ngIf="error"
+                class="alert d-flex align-items-center justify-content-between text-danger mt-2 mb-1 p-2"
+              >
+                <small>{{ error }}</small>
+                <button
+                  (click)="cancelError()"
+                  class="btn btn-sm btn-danger float-end"
+                >
+                  X
+                </button>
+              </span>
             </form>
           </p-dialog>
 

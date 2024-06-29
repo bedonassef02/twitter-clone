@@ -23,11 +23,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
-    // provideHttpClient(withInterceptors([UserInterceptor])),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: UserInterceptor,
-      multi: true,
-    },
+    provideHttpClient(withInterceptors([UserInterceptor])), provideAnimationsAsync(),
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: UserInterceptor,
+    //   multi: true,
+    // },
   ],
 };

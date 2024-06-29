@@ -33,10 +33,11 @@ export class AuthService {
       })
       .pipe(
         tap((user) => {
+          console.log(user);
           this.storingUser(
             user.name,
             user.username,
-            user.password,
+            user.id,
             user.access_token
           );
         }),
@@ -49,10 +50,12 @@ export class AuthService {
       .post<User>(`${this.API}auth/login`, { username, password })
       .pipe(
         tap((user) => {
+          console.log(user);
+
           this.storingUser(
             user.name,
             user.username,
-            user.password,
+            user.id,
             user.access_token
           );
         }),
@@ -60,7 +63,7 @@ export class AuthService {
       );
   }
 
-autoLogin() {
+  autoLogin() {
     const loadedUser: User = JSON.parse(localStorage.getItem('user'));
     if (!loadedUser) {
       return;
@@ -73,24 +76,23 @@ autoLogin() {
     };
     this.userSub.next(newUser);
   }
-  
   private storingUser(
     name: string,
     username: string,
-    password: string,
+    id: string,
     access_token: string
   ) {
     const user: User = {
       name: name,
       username: username,
-      password: password,
+      id: id,
       access_token: access_token,
     };
     this.userSub.next(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
   private handleAuthError(errorResponse: HttpErrorResponse) {
-    let error = 'Wrong password';
+    let error = 'Something went wrong, please try again later';
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(error);
     }
@@ -123,5 +125,9 @@ autoLogin() {
     this.userSub.next(null);
     localStorage.removeItem('user');
     // this.router.navigate(['/logout']);
+  }
+
+  getCurrentUser(): User {
+    return JSON.parse(localStorage.getItem('user'));
   }
 }

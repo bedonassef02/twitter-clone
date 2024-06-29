@@ -1,5 +1,4 @@
 import { Component, OnInit, inject, Renderer2, Inject } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,18 +12,21 @@ import { DOCUMENT } from '@angular/common';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
-const PRIM_CMP = [
+import { LoadingSpinner } from '../../shared/loading-spinner/loading-spinner';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+export const PRIM_CMP = [
   DialogModule,
   ButtonModule,
   InputTextModule,
   FloatLabelModule,
   PasswordModule,
   StyleClassModule,
+  InputTextareaModule,
 ];
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, LoginComponent, PRIM_CMP],
+  imports: [CommonModule, FormsModule, PRIM_CMP, LoadingSpinner],
   selector: 'app-logout',
   templateUrl: 'logout.component.html',
   styleUrls: ['logout.component.scss'],
@@ -39,7 +41,7 @@ export class Logout implements OnInit {
   visible: boolean = false;
   login = false;
   value = '';
-  error = false;
+  error = null;
   isLoading = false;
   toggleRM() {
     this.login = !this.login;
@@ -57,23 +59,27 @@ export class Logout implements OnInit {
     const name = form.value.name;
     const username = form.value.username;
     const password = form.value.password;
-    console.log(name, username, password);
-
-    if (!this.login) {
-      obs = this.authS.signUp(name, username, password);
+    if (this.login) {
+      console.log(username, password);
     } else {
-      obs = this.authS.signIn(username, password);
+      console.log(name, username, password);
+    }
+
+    const unWS = username.replace(/\s+/g, '');
+    if (!this.login) {
+      obs = this.authS.signUp(name, unWS, password);
+    } else {
+      obs = this.authS.signIn(unWS, password);
     }
     obs.subscribe({
       next: (userInfo) => {
         this.isLoading = false;
-        console.log(userInfo.access_token);
+
         this.router.navigateByUrl('/home');
       },
       error: (error) => {
         this.isLoading = false;
-        this.error = true;
-        console.log(error);
+        this.error = error;
       },
     });
   }
@@ -96,5 +102,8 @@ export class Logout implements OnInit {
         this.login = true;
       });
     });
+  }
+  cancelError() {
+    this.error = null;
   }
 }
