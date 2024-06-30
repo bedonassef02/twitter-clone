@@ -78,7 +78,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   USerProfileDetails: profileResponse;
   formGroup: FormGroup;
   userDate: Date = new Date();
+
   ngOnInit(): void {
+    this.pService.profileDetailsSub.subscribe((userDetails) => {
+      this.USerProfileDetails = userDetails;
+    });
+
     this.authS.userSub.subscribe((user) => {
       if (user) {
         // const usernameWithoutSpaces = username.replace(/\s+/g, '');
@@ -141,7 +146,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       website,
       new Date(birthDate)
     );
-    this.pService.editProfile(userInfo);
+    this.pService.editProfile(userInfo).subscribe();
     this.messageService.add({
       severity: 'success',
       summary: 'Success',
@@ -157,6 +162,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     let location: string = '';
     let website: string = '';
     let birthDate: string = '';
+    if (this.USerProfileDetails) {
+      bio = this.USerProfileDetails.bio;
+      location = this.USerProfileDetails.location;
+      website = this.USerProfileDetails.website;
+      birthDate = this.USerProfileDetails.birthDate;
+      this.birthDate = new Date(birthDate);
+    }
+
     const user = JSON.parse(localStorage.getItem('profile'));
     if (user) {
       bio = user.bio;

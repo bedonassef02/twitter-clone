@@ -5,15 +5,14 @@ import { AuthService } from '../auth/auth.service';
 import {
   UserInfo,
   UserActions,
-  UserProfileDTO,
   UserProfileInfo,
 } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs';
+import { tap } from 'rxjs';
 
 export interface profileResponse {
   bio?: string;
-  birthDate?: Date;
+  birthDate?: string;
   coverImage?: string;
   createdAt?: string;
   isPrivate?: boolean;
@@ -41,17 +40,17 @@ export class ProfileService {
   }
 
   editProfile(user: UserProfileInfo) {
-    this.http
+    return this.http
       .patch<profileResponse>(
         'https://twitter-api-ld6h.onrender.com/profile',
         user
       )
-      .subscribe((response: profileResponse) => {
-        console.log('server response', response);
-
-        this.profileDetailsSub.next(response);
-        this.setItemTLS(response);
-      });
+      .pipe(
+        tap((response) => {
+          this.profileDetailsSub.next(response);
+          this.setItemTLS(response);
+        })
+      );
   }
 
   private setItemTLS(userInfo: profileResponse) {
