@@ -30,7 +30,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
-import { UserProfileDTO, UserProfileInfo } from '../../models/user.model';
+import {
+  UserInfo,
+  UserProfileDTO,
+  UserProfileInfo,
+} from '../../models/user.model';
 import { MaterialExamples } from '../../constatns/ng-material-itmes';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { userInfo } from 'os';
@@ -59,7 +63,6 @@ import { userInfo } from 'os';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private messageService: MessageService) {}
-
   router: Router = inject(Router);
   private fb: FormBuilder;
   pService: ProfileService = inject(ProfileService);
@@ -75,15 +78,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   showDate = false;
   birthDate: Date;
   visible: boolean = false;
-  USerProfileDetails: profileResponse;
+  USerProfileDetails: UserInfo;
   formGroup: FormGroup;
   userDate: Date = new Date();
 
   ngOnInit(): void {
-    this.pService.profileDetailsSub.subscribe((userDetails) => {
-      this.USerProfileDetails = userDetails;
-    });
-
     this.authS.userSub.subscribe((user) => {
       if (user) {
         // const usernameWithoutSpaces = username.replace(/\s+/g, '');
@@ -93,9 +92,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.initForm();
-    this.getUserInfo();
+    // this.getUserInfo();
     this.getUserLogo();
+    this.initForm();
   }
 
   editProfile() {
@@ -108,6 +107,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   getUserInfo() {
     this.pService.getUserName(this.username).subscribe((userData) => {
+      this.pService.profileSubject.next(userData);
       this.createdAt = new Date(userData.createdAt);
     });
   }
@@ -146,7 +146,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       website,
       new Date(birthDate)
     );
-    this.pService.editProfile(userInfo).subscribe();
+    this.pService.editProfile(userInfo);
     this.messageService.add({
       severity: 'success',
       summary: 'Success',
@@ -158,32 +158,31 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    let bio: string = '';
-    let location: string = '';
-    let website: string = '';
-    let birthDate: string = '';
-    if (this.USerProfileDetails) {
-      bio = this.USerProfileDetails.bio;
-      location = this.USerProfileDetails.location;
-      website = this.USerProfileDetails.website;
-      birthDate = this.USerProfileDetails.birthDate;
-      this.birthDate = new Date(birthDate);
-    }
-
-    const user = JSON.parse(localStorage.getItem('profile'));
-    if (user) {
-      bio = user.bio;
-      location = user.location;
-      website = user.website;
-      birthDate = user.birthDate;
-      this.birthDate = new Date(birthDate);
-    }
-
+    // Initialize the form with empty values or default values
     this.formGroup = new FormGroup({
-      bio: new FormControl(bio, Validators.required),
-      location: new FormControl(location, Validators.required),
-      website: new FormControl(website, Validators.required),
-      birthDate: new FormControl(birthDate, Validators.required),
+      bio: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required),
+      website: new FormControl('', Validators.required),
+      birthDate: new FormControl('', Validators.required),
     });
+
+    // Fetch user info and set form values
+    this.pService.getUserName(this.username).subscribe((userInfo) => {
+      if (userInfo) {
+        this.setUserFormValues(userInfo);
+      }
+    });
+  }
+
+  // Separate method to set form values
+  private setUserFormValues(userInfo: any) {
+    this.formGroup.setValue({
+      bio: userInfo.bio || '',
+      location: userInfo.location || '',
+      website: userInfo.website || '',
+      birthDate: userInfo.birthDate || '',
+    });
+
+    this.birthDate = new Date(userInfo.birthDate);
   }
 }

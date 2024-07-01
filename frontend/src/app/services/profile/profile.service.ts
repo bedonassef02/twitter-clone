@@ -8,7 +8,7 @@ import {
   UserProfileInfo,
 } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { tap } from 'rxjs';
+import { Subject, tap } from 'rxjs';
 
 export interface profileResponse {
   bio?: string;
@@ -24,6 +24,7 @@ export interface profileResponse {
 }
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
+  profileSubject = new BehaviorSubject<UserInfo>(null);
   authS: AuthService = inject(AuthService);
   constructor() {}
   private API = 'https://twitter-api-ld6h.onrender.com/profile/';
@@ -40,20 +41,19 @@ export class ProfileService {
   }
 
   editProfile(user: UserProfileInfo) {
-    return this.http
+    this.http
       .patch<profileResponse>(
         'https://twitter-api-ld6h.onrender.com/profile',
         user
       )
-      .pipe(
-        tap((response) => {
-          this.profileDetailsSub.next(response);
-          this.setItemTLS(response);
-        })
-      );
+      .subscribe();
   }
 
-  private setItemTLS(userInfo: profileResponse) {
-    localStorage.setItem('profile', JSON.stringify(userInfo));
-  }
+  // private setItemTLS(userInfo: profileResponse) {
+  //   localStorage.setItem('profile', JSON.stringify(userInfo));
+  // }
+
+  // getProfileInfo() {
+  //   this.http.get(`${this.APIEnv}/username`);
+  // }
 }

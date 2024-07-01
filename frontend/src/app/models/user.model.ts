@@ -6,7 +6,7 @@ export interface User {
 }
 
 export interface UserInfo {
-  _id: string;
+  id: string;
   profileImage: string;
   coverImage: string;
   bio: string;
@@ -17,7 +17,6 @@ export interface UserInfo {
   user: string;
   createdAt: string;
   updatedAt: string;
-  __v: 0;
 }
 
 export interface UserActions {
