@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="users">
-      <change afterPath="$PROJECT_DIR$/backend/src/utils/helpers/rate-limit.helper.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/utils/helpers/swagger.helper.ts" afterDir="false" />
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="enhance">
+      <change afterPath="$PROJECT_DIR$/backend/src/account/dto/update-account.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/account/entities/account.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/chat/utils/interfaces/user-chat.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/controllers/two-factor.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/profile/entities/profile.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/entities/profile.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+        <option value="HTML File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -46,22 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/BEDO/JOB/PROJECTS/Nest js/blog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\BEDO\\JOB\\PROJECTS\\Nest js\\twitter-clone\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/BEDO/JOB/PROJECTS/Nest js/e-commerce",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "D:\\BEDO\\JOB\\PROJECTS\\Nest js\\twitter-clone\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\bookmarks" />
@@ -71,6 +76,7 @@
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\posts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\stripe" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\auth\dto\responses" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\profile\dto\responses" />
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend" />
@@ -114,7 +120,15 @@
       <workItem from="1719226466277" duration="54000" />
       <workItem from="1719231153053" duration="36000" />
       <workItem from="1719495602724" duration="739000" />
-      <workItem from="1719678599993" duration="313000" />
+      <workItem from="1719678599993" duration="764000" />
+      <workItem from="1719770161998" duration="905000" />
+      <workItem from="1719840253617" duration="669000" />
+      <workItem from="1719849309735" duration="821000" />
+      <workItem from="1719856875816" duration="2598000" />
+      <workItem from="1719914770070" duration="2890000" />
+      <workItem from="1719933597139" duration="1254000" />
+      <workItem from="1720272158508" duration="53000" />
+      <workItem from="1720460842016" duration="1486000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -268,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718969209095</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="enhance">
+      <option name="closed" value="true" />
+      <created>1719678931371</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719678931371</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +304,6 @@
     <MESSAGE value="chat" />
     <MESSAGE value="search and bookmark" />
     <MESSAGE value="counts" />
-    <MESSAGE value="enhance" />
     <MESSAGE value="swagger" />
     <MESSAGE value="enhance types &amp; format code" />
     <MESSAGE value="google auth" />
@@ -290,6 +311,7 @@
     <MESSAGE value="auth response" />
     <MESSAGE value="clean code" />
     <MESSAGE value="users" />
-    <option name="LAST_COMMIT_MESSAGE" value="users" />
+    <MESSAGE value="enhance" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance" />
   </component>
 </project>

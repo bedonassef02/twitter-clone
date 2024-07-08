@@ -7,6 +7,7 @@ import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { IsUserUpdatedMiddleware } from '../auth/middlewares/is-user-updated.middleware';
 import { AuthModule } from '../auth/auth.module';
 import { UsersModule } from '../users/users.module';
+import { ChatGateway } from './chat.gateway';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { UsersModule } from '../users/users.module';
     UsersModule,
   ],
   controllers: [ChatController],
-  providers: [ChatService],
+  providers: [ChatService, ChatGateway],
 })
 export class ChatModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

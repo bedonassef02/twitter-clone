@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import {Type} from "class-transformer";
+import { Type } from 'class-transformer';
 
 export class UpdateProfileDto {
   @IsOptional()
