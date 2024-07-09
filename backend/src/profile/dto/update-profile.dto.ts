@@ -18,7 +18,7 @@ export class UpdateProfileDto {
     description: 'A short biography of the user, up to 256 characters.',
     required: false,
   })
-  bio: string;
+  bio?: string;
 
   @IsOptional()
   @Type(() => Date)
@@ -30,7 +30,7 @@ export class UpdateProfileDto {
     type: String,
     format: 'date-time',
   })
-  birthDate: Date;
+  birthDate?: Date;
 
   @IsOptional()
   @IsString()
@@ -40,7 +40,7 @@ export class UpdateProfileDto {
     description: 'The location of the user, up to 64 characters.',
     required: false,
   })
-  location: string;
+  location?: string;
 
   @IsOptional()
   @IsUrl()
@@ -49,7 +49,7 @@ export class UpdateProfileDto {
     description: 'The personal website of the user.',
     required: false,
   })
-  website: string;
+  website?: string;
 
   @IsOptional()
   @IsBoolean()
@@ -58,5 +58,8 @@ export class UpdateProfileDto {
     description: 'Indicates whether the user profile is private.',
     required: false,
   })
-  isPrivate: boolean;
+  isPrivate?: boolean;
+
+  isVerified?: boolean;
+  verifiedAt?: Date;
 }

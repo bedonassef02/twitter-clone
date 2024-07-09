@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="chat &amp; payment">
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="improve payment (verify accounts)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/billing/dto/create-billing.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/dto/create-billing.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/billing/dto/update-billing.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/billing/entities/billing.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/entities/billing.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/dto/create-billing.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/profile.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +121,7 @@
       <workItem from="1719933597139" duration="1254000" />
       <workItem from="1720272158508" duration="53000" />
       <workItem from="1720460842016" duration="2421000" />
-      <workItem from="1720518816309" duration="1784000" />
+      <workItem from="1720518816309" duration="2506000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -296,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720462412396</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="improve payment (verify accounts)">
+      <option name="closed" value="true" />
+      <created>1720520698589</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1720520698589</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,6 +322,7 @@
     <MESSAGE value="users" />
     <MESSAGE value="enhance" />
     <MESSAGE value="chat &amp; payment" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat &amp; payment" />
+    <MESSAGE value="improve payment (verify accounts)" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve payment (verify accounts)" />
   </component>
 </project>

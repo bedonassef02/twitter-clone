@@ -3,6 +3,8 @@ import Stripe from 'stripe';
 import { InjectModel } from '@nestjs/mongoose';
 import { Billing } from './entities/billing.entity';
 import { Model } from 'mongoose';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { UpdateProfileDto } from '../profile/dto/update-profile.dto';
 
 @Injectable()
 export class BillingService {
@@ -10,6 +12,7 @@ export class BillingService {
 
   constructor(
     @InjectModel(Billing.name) private readonly billingModel: Model<Billing>,
+    private readonly eventEmitter: EventEmitter2,
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   }
@@ -29,6 +32,11 @@ export class BillingService {
   }
 
   success(user: string): Promise<Billing> {
+    const profileDto: UpdateProfileDto = {
+      isVerified: true,
+      verifiedAt: new Date(),
+    };
+    this.eventEmitter.emit('profile.update', user, profileDto);
     return this.billingModel.create({ user });
   }
 
