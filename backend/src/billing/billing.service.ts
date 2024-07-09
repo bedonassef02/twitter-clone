@@ -1,46 +1,50 @@
 import { Injectable } from '@nestjs/common';
 import Stripe from 'stripe';
-import { CreateBillingDto } from './dto/create-billing.dto';
-
-const stripe = new Stripe(
-  'sk_test_51NgF3oIl4KnoeBCgAxl1nPqFX21xg5zLu3mJxGOORbVzH0bF01eF2dgjR5w8GC41wdx2flTfNXuhCbVges67BnwU00QFE5VI8p',
-);
+import { InjectModel } from '@nestjs/mongoose';
+import { Billing } from './entities/billing.entity';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class BillingService {
-  async verify(billingDto: CreateBillingDto) {
-    const customer = await this.createCustomer('email', 'paymentMethodId');
-    // Step 2: Create a subscription
-    const subscription = await this.createSubscription(
-      'customer.id',
-      billingDto.priceId,
-    );
-    return subscription;
+  private readonly stripe: Stripe;
+
+  constructor(
+    @InjectModel(Billing.name) private readonly billingModel: Model<Billing>,
+  ) {
+    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   }
 
-  private async createCustomer(
-    email: string,
-    paymentMethodId: string,
-  ): Promise<Stripe.Customer> {
-    const customer = await stripe.customers.create({
-      email,
-      payment_method: paymentMethodId,
-      invoice_settings: {
-        default_payment_method: paymentMethodId,
+  async createAccountVerificationSession(
+    user: string,
+  ): Promise<Stripe.Response<Stripe.Checkout.Session>> {
+    const lineItems = this.getAccountVerificationLineItems();
+
+    return this.stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: lineItems,
+      success_url: `${process.env.APP_URL}/billing/success?user=${user}`, // TODO: TOKEN
+      cancel_url: `${process.env.APP_URL}/billing/cancel`,
+    });
+  }
+
+  success(user: string): Promise<Billing> {
+    return this.billingModel.create({ user });
+  }
+
+  private getAccountVerificationLineItems(): Stripe.Checkout.SessionCreateParams.LineItem[] {
+    return [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Account Verification for 1 Month',
+            images: [],
+          },
+          unit_amount: 800, // 8 USD in cents
+        },
+        quantity: 1,
       },
-    });
-    return customer;
-  }
-
-  private async createSubscription(
-    customerId: string,
-    priceId: string,
-  ): Promise<Stripe.Subscription> {
-    const subscription = await stripe.subscriptions.create({
-      customer: customerId,
-      items: [{ price: priceId }],
-      expand: ['latest_invoice.payment_intent'],
-    });
-    return subscription;
+    ];
   }
 }

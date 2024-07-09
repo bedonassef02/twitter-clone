@@ -1,7 +1,13 @@
-import { IsIn, IsString } from 'class-validator';
+import { IsCurrency, IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class CreateBillingDto {
+  @IsNumber()
+  @IsPositive()
+  amount: number;
+  @IsCurrency()
+  currency: string;
   @IsString()
-  @IsIn(['prod_QOrN3qCgWmQdiZ', 'prod_QOrMfjde4p0fy9', 'prod_QOrLgk1HFH9ndU'])
-  priceId: string;
+  customer: string;
+  @IsString()
+  source: string;
 }

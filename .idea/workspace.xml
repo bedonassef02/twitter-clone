@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="enhance">
-      <change afterPath="$PROJECT_DIR$/backend/src/account/dto/update-account.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/account/entities/account.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/chat/utils/interfaces/user-chat.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="2e1fb019-ffa0-4138-8ad5-165881c8b030" name="Changes" comment="chat &amp; payment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/dto/update-profile.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/profile/entities/profile.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/profile/entities/profile.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/billing.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/billing.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/dto/create-billing.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/dto/create-billing.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/dto/update-billing.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/billing/entities/billing.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/billing/entities/billing.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/chat/chat.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/chat/chat.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/posts/posts.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/BEDO/JOB/PROJECTS/Nest js/e-commerce",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "ts.external.directory.path": "D:\\BEDO\\JOB\\PROJECTS\\Nest js\\twitter-clone\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/BEDO/JOB/PROJECTS/Nest js/e-commerce&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\BEDO\\JOB\\PROJECTS\\Nest js\\twitter-clone\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\BEDO\JOB\PROJECTS\Nest js\twitter-clone\backend\src\bookmarks" />
@@ -128,7 +125,8 @@
       <workItem from="1719914770070" duration="2890000" />
       <workItem from="1719933597139" duration="1254000" />
       <workItem from="1720272158508" duration="53000" />
-      <workItem from="1720460842016" duration="1486000" />
+      <workItem from="1720460842016" duration="2421000" />
+      <workItem from="1720518816309" duration="1784000" />
     </task>
     <task id="LOCAL-00001" summary="twitter">
       <option name="closed" value="true" />
@@ -290,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719678931371</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="chat &amp; payment">
+      <option name="closed" value="true" />
+      <created>1720462412396</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1720462412396</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +318,7 @@
     <MESSAGE value="clean code" />
     <MESSAGE value="users" />
     <MESSAGE value="enhance" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance" />
+    <MESSAGE value="chat &amp; payment" />
+    <option name="LAST_COMMIT_MESSAGE" value="chat &amp; payment" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 
 export type BillingDocument = HydratedDocument<Billing>;
@@ -6,8 +6,6 @@ export type BillingDocument = HydratedDocument<Billing>;
 export class Billing {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   user: string;
-  @Prop()
-  amount: number;
-  @Prop()
-  billing_history: any;
 }
+
+export const BillingSchema = SchemaFactory.createForClass(Billing);
