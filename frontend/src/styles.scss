@@ -5,12 +5,14 @@
 // @import "/node_modules/normalize.css/normalize.css";
 body {
   box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", "Tahoma", "Roboto", Helvetica, Arial, sans-serif;
   background-color: black;
   color: white;
   // height: 100vh;
 }
-
+* {
+  scroll-behavior: smooth;
+}
 a {
   text-decoration: none;
   cursor: pointer;
@@ -123,4 +125,34 @@ body {
   width: 25rem;
   height: 1rem;
   padding: 0;
+}
+
+.posts {
+  p-dialog .p-dialog-header {
+    padding: 0;
+    margin: 0;
+  }
+}
+textarea.posts {
+  background-color: black;
+  width: 100%;
+  padding: 40px;
+  border: 0;
+  width: 100%;
+  margin-left: -20px;
+  box-sizing: border-box; /* ensures padding and border are included in the width */
+  resize: none; /* prevents the user from resizing the textarea */
+  overflow-wrap: break-word; /* ensures words will break to the next line */
+  &:focus {
+    outline: none;
+    border: 0;
+  }
+  &::placeholder {
+    color: #e7e9ea;
+    opacity: 2;
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none solid rgb(231, 233, 234);
+  }
 }
