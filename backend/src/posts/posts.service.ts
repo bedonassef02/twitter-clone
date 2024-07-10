@@ -40,6 +40,7 @@ export class PostsService {
   }
 
   findAll() {
+    // TODO: logic to get related posts to user
     return `This action returns all posts`;
   }
 

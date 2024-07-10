@@ -65,6 +65,7 @@ export class ProfileService {
     return this.followService.findFollowers(profile.user);
   }
 
+  @OnEvent('profile.update')
   async update(
     userId: string,
     updateProfileDto: UpdateProfileDto,

@@ -22,6 +22,10 @@ export class Profile {
   isPrivate: boolean;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   user: string;
+  @Prop({ default: false })
+  isVerified: boolean;
+  @Prop({ default: null })
+  verifiedAt: Date;
 }
 
 export const ProfileSchema = SchemaFactory.createForClass(Profile);

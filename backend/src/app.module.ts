@@ -19,6 +19,8 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { rateLimit } from './utils/helpers/rate-limit.helper';
 import { APP_GUARD } from '@nestjs/core';
+import { BillingModule } from './billing/billing.module';
+import { AccountModule } from './account/account.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ expandVariables: true, isGlobal: true }),
@@ -41,6 +43,8 @@ import { APP_GUARD } from '@nestjs/core';
       isGlobal: true,
     }),
     ThrottlerModule.forRoot(rateLimit),
+    BillingModule,
+    AccountModule,
   ],
   controllers: [AppController],
   providers: [
