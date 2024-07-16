@@ -48,12 +48,13 @@ export class PostsService {
     return this.postModel.find({ user });
   }
 
-  async findOne(id: string): Promise<PostDocument | null> {
+  async findOne(id: string): Promise<any> {
     const post: PostDocument | null = await this.postModel.findById(id);
     if (!post) {
       throw new NotFoundException(`post with id: ${id} not found`);
     }
-    return post;
+    const info = await this.findCount(id);
+    return { post, ...info };
   }
 
   async findCount(id: string): Promise<PostCountResponse> {
