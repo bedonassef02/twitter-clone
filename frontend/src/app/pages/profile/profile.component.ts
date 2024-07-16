@@ -1,16 +1,15 @@
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
   OnDestroy,
   OnInit,
   inject,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
-import { Route, Router, RouterModule } from '@angular/router';
-import {
-  ProfileService,
-  profileResponse,
-} from '../../services/profile/profile.service';
+import { Router, RouterModule } from '@angular/router';
+import { ProfileService } from '../../services/profile/profile.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { PRIM_CMP } from '../logout/logout.component';
@@ -30,14 +29,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
-import {
-  UserInfo,
-  UserProfileDTO,
-  UserProfileInfo,
-} from '../../models/user.model';
+import { UserInfo, UserProfileInfo } from '../../models/user.model';
 import { MaterialExamples } from '../../constatns/ng-material-itmes';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { userInfo } from 'os';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -81,18 +75,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   USerProfileDetails: UserInfo;
   formGroup: FormGroup;
   userDate: Date = new Date();
-
   ngOnInit(): void {
     this.authS.userSub.subscribe((user) => {
       if (user) {
-        // const usernameWithoutSpaces = username.replace(/\s+/g, '');
         this.username = user.username;
-        const userNameWS = user.username.replace(/\s+/g, '');
-        this.getFollowers(userNameWS);
       }
+      this.getUserInfo(this.username);
+      this.getFollowers(this.username);
     });
 
-    // this.getUserInfo();
     this.getUserLogo();
     this.initForm();
   }
@@ -105,8 +96,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.showDate = !this.showDate;
   }
 
-  getUserInfo() {
-    this.pService.getUserName(this.username).subscribe((userData) => {
+  getUserInfo(username) {
+    this.pService.getUserName(username).subscribe((userData) => {
       this.pService.profileSubject.next(userData);
       this.createdAt = new Date(userData.createdAt);
     });
@@ -140,12 +131,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     let location = this.formGroup.value.location;
     let website = this.formGroup.value.website;
     let birthDate = this.formGroup.value.birthDate;
-    const userInfo = new UserProfileInfo(
-      bio,
-      location,
-      website,
-      new Date(birthDate)
-    );
+    let userBirthDate = new Date(this.formGroup.value.birthDate);
+    this.userBirthDate = userBirthDate;
+    const userInfo = new UserProfileInfo(bio, location, website, userBirthDate);
     this.pService.editProfile(userInfo);
     this.messageService.add({
       severity: 'success',
@@ -156,6 +144,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.visible = false;
     }, 100);
   }
+
+  userBirthDate: Date;
 
   private initForm() {
     // Initialize the form with empty values or default values
@@ -169,7 +159,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     // Fetch user info and set form values
     this.pService.getUserName(this.username).subscribe((userInfo) => {
       if (userInfo) {
+        console.log(userInfo);
         this.setUserFormValues(userInfo);
+        this.userBirthDate = new Date(userInfo.birthDate);
       }
     });
   }
@@ -182,6 +174,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       website: userInfo.website || '',
       birthDate: userInfo.birthDate || '',
     });
+    this.birthDate = new Date(userInfo.birthDate);
 
     this.birthDate = new Date(userInfo.birthDate);
   }

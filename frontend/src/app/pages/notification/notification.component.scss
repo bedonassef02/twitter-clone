@@ -1,0 +1,30 @@
+.notifications-menu {
+
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      text-align: center;
+      flex: 1;
+      a {
+        height: 62px;
+        display: block;
+        position: relative;
+        align-content: center;
+        &:hover {
+          background-color: rgb(238, 238, 238, 0.2);
+        }
+        &.active::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          background-color: #1677b8;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 5px;
+        }
+      }
+    }
+  }
+}

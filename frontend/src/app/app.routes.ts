@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './services/auth/auth.guard';
 import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,10 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+      },
+      {
+        path: 'notification',
+        component: NotificationComponent,
       },
       {
         path: 'profile',
