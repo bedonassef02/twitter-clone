@@ -1,22 +1,14 @@
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post.dto';
-import { InjectModel } from '@nestjs/mongoose';
-import { Post, PostDocument } from './entities/post.entity';
-import { Model } from 'mongoose';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { NotificationDto } from '../notifications/dto/notification.dto';
-import { LikesService } from '../likes/likes.service';
-import {
-  checkIfPostEmpty,
-  checkPostType,
-  createPostNotification,
-} from './utils/helpers/create-post.helper';
-import { PostsStatusService } from './utils/services/posts-status.service';
-import { PostCountResponse } from './dto/responses/post-count.response';
+import {Injectable, NotFoundException, UnauthorizedException,} from '@nestjs/common';
+import {CreatePostDto} from './dto/create-post.dto';
+import {InjectModel} from '@nestjs/mongoose';
+import {Post, PostDocument} from './entities/post.entity';
+import {Model} from 'mongoose';
+import {EventEmitter2} from '@nestjs/event-emitter';
+import {NotificationDto} from '../notifications/dto/notification.dto';
+import {LikesService} from '../likes/likes.service';
+import {checkIfPostEmpty, checkPostType, createPostNotification,} from './utils/helpers/create-post.helper';
+import {PostsStatusService} from './utils/services/posts-status.service';
+import {PostCountResponse} from './dto/responses/post-count.response';
 
 @Injectable()
 export class PostsService {
@@ -44,8 +36,15 @@ export class PostsService {
     return `This action returns all posts`;
   }
 
-  findUserPosts(user: string) {
-    return this.postModel.find({ user });
+  async findUserPosts(user: string): Promise<any[]> {
+    const posts: PostDocument[] = await this.postModel.find({ user });
+
+    return await Promise.all(
+        posts.map(async (post) => {
+          const info = await this.findCount(post.id);
+          return {post, ...info};
+        })
+    );
   }
 
   async findOne(id: string): Promise<any> {

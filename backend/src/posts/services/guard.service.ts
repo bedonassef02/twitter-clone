@@ -42,6 +42,7 @@ export class GuardService {
     return this.postsService.findOne(postId);
   }
 
+
   private isPostOwner(postUser: string, user: string): boolean {
     // TODO: improve logic here
     return true;
