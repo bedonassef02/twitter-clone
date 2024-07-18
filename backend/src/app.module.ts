@@ -39,7 +39,7 @@ import { AccountModule } from './account/account.module';
     BookmarksModule,
     CacheModule.register({
       max: 10,
-      ttl: 600000,
+      ttl: 6000,
       isGlobal: true,
     }),
     ThrottlerModule.forRoot(rateLimit),

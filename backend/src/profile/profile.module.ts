@@ -29,7 +29,7 @@ import { CacheModule } from '@nestjs/cache-manager';
     BlockModule,
     CacheModule.register({
       max: 10,
-      ttl: 60000,
+      ttl: 6000,
       isGlobal: true,
     }),
   ],
