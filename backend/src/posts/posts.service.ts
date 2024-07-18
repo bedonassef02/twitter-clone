@@ -45,12 +45,11 @@ export class PostsService {
   }
 
   findAll() {
-    // TODO: logic to get related posts to user
-    return `This action returns all posts`;
+    return this.postModel.find().sort({ createdAt: -1 });
   }
 
   async findUserPosts(user: string): Promise<any[]> {
-    const posts: PostDocument[] = await this.postModel.find({ user });
+    const posts: PostDocument[] = await this.postModel.find({ user }).sort({ createdAt: -1 });
 
     return await Promise.all(
       posts.map(async (post) => {
