@@ -1,14 +1,22 @@
-import {Injectable, NotFoundException, UnauthorizedException,} from '@nestjs/common';
-import {CreatePostDto} from './dto/create-post.dto';
-import {InjectModel} from '@nestjs/mongoose';
-import {Post, PostDocument} from './entities/post.entity';
-import {Model} from 'mongoose';
-import {EventEmitter2} from '@nestjs/event-emitter';
-import {NotificationDto} from '../notifications/dto/notification.dto';
-import {LikesService} from '../likes/likes.service';
-import {checkIfPostEmpty, checkPostType, createPostNotification,} from './utils/helpers/create-post.helper';
-import {PostsStatusService} from './utils/services/posts-status.service';
-import {PostCountResponse} from './dto/responses/post-count.response';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { CreatePostDto } from './dto/create-post.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Post, PostDocument } from './entities/post.entity';
+import { Model } from 'mongoose';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { NotificationDto } from '../notifications/dto/notification.dto';
+import { LikesService } from '../likes/likes.service';
+import {
+  checkIfPostEmpty,
+  checkPostType,
+  createPostNotification,
+} from './utils/helpers/create-post.helper';
+import { PostsStatusService } from './utils/services/posts-status.service';
+import { PostCountResponse } from './dto/responses/post-count.response';
 
 @Injectable()
 export class PostsService {
@@ -19,7 +27,7 @@ export class PostsService {
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
-  create(createPostDto: CreatePostDto): Promise<PostDocument> {
+  async create(createPostDto: CreatePostDto): Promise<any> {
     checkIfPostEmpty(createPostDto);
     checkPostType(createPostDto);
     if (createPostDto.type === 'comment' || createPostDto.repost) {
@@ -27,8 +35,13 @@ export class PostsService {
         createPostNotification(createPostDto);
       this.eventEmitter.emit('notification.create', createNotificationDto);
     }
-
-    return this.postModel.create(createPostDto);
+    const post = await this.postModel.create(createPostDto);
+    return {
+      post,
+      comments: 0,
+      reposts: 0,
+      likes: 0,
+    };
   }
 
   findAll() {
@@ -40,10 +53,10 @@ export class PostsService {
     const posts: PostDocument[] = await this.postModel.find({ user });
 
     return await Promise.all(
-        posts.map(async (post) => {
-          const info = await this.findCount(post.id);
-          return {post, ...info};
-        })
+      posts.map(async (post) => {
+        const info = await this.findCount(post.id);
+        return { post, ...info };
+      }),
     );
   }
 
@@ -68,8 +81,9 @@ export class PostsService {
       likes,
     };
   }
+
   async remove(userId: string, id: string): Promise<void> {
-    const post: Post = await this.findOne(id);
+    const post: any = await this.findOne(id);
     if (post.user.toString() !== userId) {
       throw new UnauthorizedException(
         'you are not allowed to remove this post',
@@ -78,12 +92,19 @@ export class PostsService {
     await this.postModel.findByIdAndDelete(id);
   }
 
-  async search(keyword: string): Promise<PostDocument[]> {
+  async search(keyword: string): Promise<any[]> {
     const regex = new RegExp(keyword, 'i');
-    return this.postModel
+    const posts: PostDocument[] = await this.postModel
       .find({
         $or: [{ content: { $regex: regex } }],
       })
       .exec();
+
+    return await Promise.all(
+      posts.map(async (post) => {
+        const info = await this.findCount(post.id);
+        return { post, ...info };
+      }),
+    );
   }
 }
